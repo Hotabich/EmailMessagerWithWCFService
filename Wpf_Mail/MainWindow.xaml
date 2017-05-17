@@ -1,0 +1,44 @@
+﻿<Window x:Class="Wpf_Mail.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_Mail"
+        mc:Ignorable="d"
+        Title="Messager" Height="350" Width="950" ResizeMode="NoResize"
+        Style="{StaticResource MainWindow}">   
+        <Grid Opacity="0.75">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.15*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.15*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="277*"></ColumnDefinition>
+                <ColumnDefinition Width="97*"></ColumnDefinition>
+                <ColumnDefinition Width="277*"></ColumnDefinition>
+                <ColumnDefinition Width="108*"></ColumnDefinition>
+                <ColumnDefinition Width="169*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+            <Label x:Name="EnterEmailLabel" Style="{StaticResource EnterEmailLabel}" Grid.ColumnSpan="1"/>
+            <Label x:Name="EnterMessageLabel" Style="{StaticResource EnterMessageLabel}"></Label>
+            <Label x:Name="AddFileLabel" Style="{StaticResource AddFilelLabel}" Visibility="Hidden"/>
+            <Label x:Name="SubjectLabel" Style="{StaticResource SubjectLabel}"/>
+            <TextBox x:Name="EnterEmailTexBox" Style="{StaticResource EnterEmailTexBox}" Text="{Binding Receiver, Mode=TwoWay}" />
+            <TextBox x:Name="SubjectEmailTexBox" Style="{StaticResource SubjectEmailTexBox}" Text="{Binding Subject, Mode=OneWayToSource}" />
+            <Button x:Name="EnterEmailBtn" Style="{StaticResource EnterEmailBtn}" Command="{Binding AddReceiver}"/>
+            <Button x:Name="DeleteEmailBtn" Style="{StaticResource DeleteEmailBtn}" Command="{Binding DeleteReceiver}"/>
+            <Label x:Name="EmailListLabel" Style="{StaticResource EmailListLabel}" Grid.ColumnSpan="1" />
+            <ListView x:Name="EmailListListView" Style="{StaticResource EmailListListView}" ItemsSource="{Binding Receivers, Mode=TwoWay}" SelectedItem="{Binding CurrentReceiver, Mode=TwoWay}"></ListView>
+            <TextBox x:Name="EmailMessageTexBox" Style="{StaticResource EmailMessageTexBox}" Text="{Binding Message, Mode=OneWayToSource}"/>
+            <Button x:Name="SendBtn" Style="{StaticResource SendBtn}" Command="{Binding SendMessage}"></Button>
+        <Button x:Name="AddFile" Style="{StaticResource AddFile}" Command="{Binding AddFile}" Visibility="Hidden"></Button>
+        <Button x:Name="DeleteFile" Style="{StaticResource DeleteFile}" Command="{Binding DeleteFile}" Visibility="Hidden"></Button>
+        <ListView x:Name="AddedFileListView" Style="{StaticResource AddedFileListView}" ItemsSource="{Binding FileName, Mode=TwoWay}" SelectedItem="{Binding CurrentFile, Mode=TwoWay}" Visibility="Hidden"></ListView>
+
+        </Grid>
+    
+</Window>
