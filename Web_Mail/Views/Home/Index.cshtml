@@ -1,15 +1,89 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Messager";
 }
 
 
-
+<style>
+    .mainContainer{
+    background-image:url('../../Content/Image/email.jpg');
+    height: 350px;
+}
+    .brushLabel{
+        color: white;
+    }
+    .inputFull{
+        width: 100%;
+    }
+    .inputHalf{
+        width: 50%;
+    }
+    .Opacity{
+        opacity: 0.75;
+    }
+    .nextRow{
+        margin-top: 15px;
+    }
+    .setMinHeight{
+        min-height: 150px;
+    }
+    .rightAlign{
+       text-align: right;
+    }
+</style>
 
 
 <div class="container-fluid mainContainer"  >
-    <div class="row">
-
+    <div class="row Opacity col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="row">
+            <div class="brushLabel col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                Enter Email
+            </div>
+            <div class="brushLabel col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                Subject of Message
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <input class="inputFull" />
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <button>Add</button><!--Cсылка вместо кнопки-->
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <input class="inputHalf"/>
+            </div>
+        </div>
+        <div class="row nextRow">
+            <div class="brushLabel col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                Email List
+            </div>
+            <div class="brushLabel col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                Enter Your Message
+            </div>
+        </div>
+        <div class="row nextRow">
+            <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
+               <select class="inputFull">
+                   <option>Item1</option>
+                   <option>Item2</option>
+                   <option>Item3</option>
+               </select>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+               <input class="inputFull setMinHeight"/>
+            </div>
+        </div>
+        <div class="row nextRow rightAlign">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <button>Delete</button><!--Ccылка вместо кнопки-->
+            </div>
+        </div>
+        <div class="row rightAlign">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button>Send</button><!--Ссылка вместо кнопки-->
+            </div>
+        </div>
     </div>
 </div>
 
