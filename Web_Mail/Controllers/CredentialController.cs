@@ -11,6 +11,7 @@ namespace Web_Mail.Controllers
         // GET: Credential
         public ActionResult Credential()
         {
+           
             return View();
         }
     }

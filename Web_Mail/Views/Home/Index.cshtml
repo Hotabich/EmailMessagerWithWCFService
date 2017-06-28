@@ -33,6 +33,16 @@
     .leftAlign {
         text-align: right;
     }
+    .recipienttable{
+        width: 100%;        
+        background-color: whitesmoke;
+    }
+    .recipientdiv {
+        max-height: 150px;
+    }
+    .recipienttabletdbutton{
+        width:25%;
+    }
 </style>
 
 
@@ -47,15 +57,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <input class="inputFull" />
+            @using (Html.BeginForm("AddRecipient", "Home"))
+            {
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <input class="inputFull"  type="text" name="recipient"/>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <button>Add</button><!--Cсылка вместо кнопки-->
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <input type="submit" value="Add" />
             </div>
+            }
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <input class="inputHalf"/>
-            </div>
+            </div>            
         </div>
         <div class="row nextRow">
             <div class="brushLabel col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -66,20 +79,32 @@
             </div>
         </div>
         <div class="row nextRow">
-            <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
-               <select class="inputFull">
-                   <option>Item1</option>
-                   <option>Item2</option>
-                   <option>Item3</option>
-               </select>
+            <div class=" col-xs-3 col-sm-3 col-md-3 col-lg-3 pre-scrollable recipientdiv">
+               
+                   @if (ViewBag.Recipients != null && ViewBag.Recipients.Count != 0)
+                   {
+                    <table class="recipienttable">
+                        @foreach (string recipient in ViewBag.Recipients)
+                        {
+                        <tr>
+                            <td>@recipient</td>
+                            <td class="recipienttabletdbutton">@Html.ActionLink("Delete", "DeleteRecipient", "Home", new { recipientname = recipient }, null)</td>
+                        </tr>
+                        }
+                    </table>
+                   }
+                   else
+                   {
+                       <h5 class="brushLabel">The recipients is absent</h5>
+                   }              
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
                <input class="inputFull setMinHeight"/>
             </div>
         </div>
         <div class="row nextRow col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <button>Delete</button><!--Ccылка вместо кнопки-->
+                @Html.ActionLink("Delete", "DeleteRecipient", "Home", new { recipient = "" })
             </div>
         </div>
         <div class="row rightAlign">
