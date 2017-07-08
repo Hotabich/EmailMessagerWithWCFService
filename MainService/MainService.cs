@@ -30,7 +30,7 @@ namespace MainService
 
 
 
-                SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 smtp.Credentials = new NetworkCredential(_message.OwnerLogin, _message.OwnerPassword);
                 smtp.EnableSsl = true;
 
@@ -42,7 +42,7 @@ namespace MainService
                 catch (Exception ex)
                 {
 
-                    _errors.Add("Message for " + receiver +" not senden!! "+ ex.Message);                   
+                    _errors.Add("Message for " + receiver + " not senden!! " + ex.Message + ". " + ex.InnerException);                   
                 }
 
             }

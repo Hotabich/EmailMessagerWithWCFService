@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web_Mail.Models;
+using Web_Mail.ServiceReference1;
 
 namespace Web_Mail.Controllers
 {
@@ -49,15 +50,25 @@ namespace Web_Mail.Controllers
 
         [HttpGet]
         public ActionResult DeleteRecipient(string recipientname)
-        {          
-            Sender.Recipient.Remove(recipientname);
-            ViewBag.Recipients = Sender.Recipient;
-            return View("Index");
+        {
+            
+                Sender.Recipient.Remove(recipientname);
+                ViewBag.Recipients = Sender.Recipient;            
+                return View("Index");
+            
         }
 
         public ActionResult AddRecipient(string recipient)
-        {
-           Sender.Recipient.Insert(0, recipient);
+        {           
+
+            if (!String.IsNullOrEmpty(recipient))
+            {
+                Sender.Recipient.Insert(0, recipient);                
+            }
+            else
+            {
+                ViewData["EmptyRecipient"] = "Recipient's name can not be empty";
+            }
             ViewBag.Recipients = Sender.Recipient;
             return View("Index");
         }
