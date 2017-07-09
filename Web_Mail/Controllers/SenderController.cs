@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Web_Mail.Models;
 using Web_Mail.ServiceReference1;
+using Web_Mail.Models;
 
 namespace Web_Mail.Controllers
 {
@@ -14,26 +15,43 @@ namespace Web_Mail.Controllers
     {
         #region Fields
         private ServiceReference1.MainServiceClient _client;
+        
         #endregion
 
-        public SenderController(string from, string password, List<string> to, string subject, string message)
+        public SenderController()
         {
             _client = new MainServiceClient("BasicHttpBinding_IMainService", "http://localhost:8080/MainService");
-            ServiceReference1.Message mess = new Message();
-            mess.OwnerLogin = from;
-            mess.OwnerPassword = password;
-
-            mess.Receivers = new string[to.Count-1];
-            int _idReceivers = 0;
-            foreach(string receiver in to)
-            {
-                mess.Receivers[_idReceivers] = receiver;
-            }
             
-            mess.SubjectMessage = subject;
-            mess.TextMessage = message;
+        }
+
+        [Route("api/sender/send"), HttpPost]
+        public string Send([FromBody]dynamic message)
+        {
+
+
+            Message mess = new Message();
+            mess.OwnerLogin = Sender.Email;
+            mess.OwnerPassword = Sender.Password;
+
+            if (Sender.Recipient.Count > 0)
+            {
+                mess.Receivers = new string[Sender.Recipient.Count];
+                int _idRecipient = 0;
+                foreach (string item in Sender.Recipient)
+                {
+                    mess.Receivers[_idRecipient] = item;
+                }
+            }
+            else
+            {
+                return "No recipients";
+            }
+
+            mess.SubjectMessage = message[0];
+            mess.TextMessage = message[1];
 
             string[] result = _client.Send(mess);
+            return result[0];
         }
 
 
