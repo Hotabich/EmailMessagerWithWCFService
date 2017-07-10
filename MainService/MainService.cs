@@ -9,12 +9,18 @@ using System.Net;
 using MainService.Model;
 using System.IO;
 using System.Collections.ObjectModel;
+using MainService.Model.DBRepository;
 
 namespace MainService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "MainService" in both code and config file together.
     public class MainService : IMainService
     {
+        private DbRepository _dbrepository;
+        public MainService()
+        {
+            _dbrepository = new DbRepository();
+        }
         
         public List<string> Send(Message _message)
         {

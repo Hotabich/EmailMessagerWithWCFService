@@ -9,11 +9,11 @@ namespace MainService.Model.Interfaces
     interface IDbRepository
     {
         List<string> GetAllRecipiantsList();
-        List<string> GetRecipientsList(string name);
-        void DeleteRecipiantsList(string name);
+        List<string> GetRecipientsList(int id);
+        void DeleteRecipiantsList(int id);
 
-        void AddRecipiant(int id, string nameList, string email);
-        void UpdateRecipiant(int id, string nameList);
+        void AddRecipiant(int id, int idList, string email);
+        void UpdateRecipiant(int id, int idList, string email);
         void DeleteRecipiant(int id);
 
 
