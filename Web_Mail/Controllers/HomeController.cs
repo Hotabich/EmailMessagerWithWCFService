@@ -21,7 +21,10 @@ namespace Web_Mail.Controllers
         #region Сonstructor
         public HomeController()
         {
-            //for debug
+            if((String.IsNullOrEmpty(Sender.Email))||(String.IsNullOrEmpty(Sender.Email)))
+            {
+                 Redirect("/Credential/Credential");
+            }
                
         }
 

@@ -1,55 +1,9 @@
-﻿
+﻿<link href="~/Content/bootstrap.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Messager";
 }
 
-<!--Перенести в файл тем-->
-<style>
-    .mainContainer{
-    background-image:url('../../Content/Image/email.jpg');
-    height: 350px;
-}
-    .brushLabel{
-        color: white;
-    }
-    .brushError {
-        color: red;
-    }
-    .inputFull{
-        width: 100%;
-    }
-    .inputHalf{
-        width: 50%;
-    }
-    .Opacity{
-        opacity: 0.75;
-    }
-    .nextRow{
-        margin-top: 15px;
-    }
-    .setMinHeight{
-        min-height: 150px;
-    }
-    .rightAlign{
-       text-align: right;
-    }
-    .leftAlign {
-        text-align: right;
-    }
-    .recipienttable{
-        width: 100%;        
-        background-color: whitesmoke;
-    }
-    .recipientdiv {
-        max-height: 150px;
-    }
-    .recipienttabletdbutton{
-        width:25%;
-    }
-</style>
-
-
-<div class="container-fluid mainContainer"  >
+<div class="container-fluid mainContainerIndex"  >
     <div class="row Opacity col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="row">
             <div class="brushLabel col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -110,29 +64,15 @@
             </div>
         </div>
       
-        <div class="row rightAlign nextRow">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-                <button onclick="Send()">Send</button><!--Ссылка вместо кнопки-->
-            </div>
-           <div><h1 class="brushLabel" id="result"></h1></div>
+        <div class="row centerAlign nextRow">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                <button class="sendButton"onclick="Send()"> Send</button>
+            </div>           
         </div>
     </div>
 </div>
 
-<script>
-    function Send() {
-        var message = new Array($("#subject").val(), $("#message").val());        
-        $.ajax({
-            url: "/api/sender/send",
-            type: "POST",
-            data: JSON.stringify(message),
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script>
+<script src="~/Scripts/JavaScript.js"></script>
 
 
 

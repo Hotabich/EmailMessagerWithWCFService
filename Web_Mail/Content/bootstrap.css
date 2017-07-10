@@ -4,19 +4,90 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
-
-.mainContainer{
-    background-image:url('../../Content/Image/email.jpg');
+.mainContainer {
     height: 350px;
 }
 
+.backgroundDiv {
+    background-image: url('../../Content/Image/password.jpg');
+    width: 400px;
+}
+.leftAlign {
+    text-align: left;
+}
 
+.centerAlign {
+    text-align: center;
+}
+
+.justifyAlign {
+    text-align: justify;
+}
+
+.error {
+    color: red;
+}
+
+.mainContainerIndex {
+    margin-top:55px;
+    background-image: url('../../Content/Image/email.jpg');
+    height: 350px;
+}
+
+.brushLabel {
+    color: white;
+}
+
+.brushError {
+    color: red;
+}
+
+.inputFull {
+    width: 100%;
+}
+
+.inputHalf {
+    width: 50%;
+}
+
+.Opacity {
+    opacity: 0.75;
+}
+
+.nextRow {
+    margin-top: 15px;
+}
+
+.setMinHeight {
+    min-height: 150px;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+.recipienttable {
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+.recipientdiv {
+    max-height: 150px;
+}
+
+.recipienttabletdbutton {
+    width: 25%;
+}
+.sendButton {
+    width:100%;
+    background-color:dodgerblue;
+    border: 1px solid blue;    
+}
 
 html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
