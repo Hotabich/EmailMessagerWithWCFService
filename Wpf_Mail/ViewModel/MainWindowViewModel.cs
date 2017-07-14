@@ -151,7 +151,11 @@ namespace Wpf_Mail.ViewModel
 
             _client = new MailService.MainServiceClient("NetTcpBinding_IMainService");
 
-            
+            //for debug
+            _client.AddRecipiantList("MyList1");
+            _client.AddRecipiantList("MyList2");
+            string[] list = _client.GetAllRecipiantsList();
+
         }
 
         #region Methods
@@ -175,20 +179,7 @@ namespace Wpf_Mail.ViewModel
                 {
                     _message.Receivers[idReceiver] = receiver.ToString();
                     idReceiver++;
-                }
-
-                //if (FileName.Count > 0)
-                //{
-                //    _message.Attachments = new Stream[FileName.Count];
-                //    int idFile = 0;
-
-                //    foreach (string filePath in FileName)
-                //    {
-                //        _message.Attachments[idFile] = File.OpenRead(filePath);
-                //        idFile++;
-                //    }
-
-                //}
+                }               
 
                 try
                 {

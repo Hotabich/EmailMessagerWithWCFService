@@ -18,11 +18,21 @@ namespace MainService
         [OperationContract]
         List<string> Send(Message _message);
 
-       
-
-        
-        
+        [OperationContract]
+        List<string> GetAllRecipiantsList();
+        [OperationContract]
+        List<string> GetRecipientsList(int id);
+        [OperationContract]
+        void AddRecipiantList(string listName);
+        [OperationContract]
+        void AddRecipiant(int idList, string email);
+        [OperationContract]
+        void UpdateRecipiant(int id, int idList, string email);
+        [OperationContract]
+        void DeleteRecipiantsList(int id);
+        [OperationContract]
+        void DeleteRecipiant(int id);
     }
 
-    
+
 }

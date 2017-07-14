@@ -43,12 +43,138 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllRecipiantsList">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientsList">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipiantList">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipiant">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipiant">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipiantsList">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipiant">
+      <soap:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IMainService" type="i0:IMainService">
     <wsp:PolicyReference URI="#NetTcpBinding_IMainService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="Send">
       <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/Send" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRecipiantsList">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientsList">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipiantList">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipiant">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiant" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipiant">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiant" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipiantsList">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipiant">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiant" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -66,7 +192,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:45617/MainService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>HOTABICH-ПК\HOTABICH</Upn>
+          <Upn>HOTABICH\Hotabich</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

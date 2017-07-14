@@ -147,6 +147,48 @@ namespace Wpf_Mail.MailService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/Send", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/SendResponse")]
         System.Threading.Tasks.Task<string[]> SendAsync(Wpf_Mail.MailService.Message _message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsListResponse")]
+        string[] GetAllRecipiantsList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsListResponse")]
+        System.Threading.Tasks.Task<string[]> GetAllRecipiantsListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsListResponse")]
+        string[] GetRecipientsList(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsListResponse")]
+        System.Threading.Tasks.Task<string[]> GetRecipientsListAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantListResponse")]
+        void AddRecipiantList(string listName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantListResponse")]
+        System.Threading.Tasks.Task AddRecipiantListAsync(string listName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiant", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantResponse")]
+        void AddRecipiant(int idList, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiant", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantResponse")]
+        System.Threading.Tasks.Task AddRecipiantAsync(int idList, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiant", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiantResponse")]
+        void UpdateRecipiant(int id, int idList, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiant", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiantResponse")]
+        System.Threading.Tasks.Task UpdateRecipiantAsync(int id, int idList, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsListResponse")]
+        void DeleteRecipiantsList(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsListResponse")]
+        System.Threading.Tasks.Task DeleteRecipiantsListAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiant", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantResponse")]
+        void DeleteRecipiant(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiant", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantResponse")]
+        System.Threading.Tasks.Task DeleteRecipiantAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -182,6 +224,62 @@ namespace Wpf_Mail.MailService {
         
         public System.Threading.Tasks.Task<string[]> SendAsync(Wpf_Mail.MailService.Message _message) {
             return base.Channel.SendAsync(_message);
+        }
+        
+        public string[] GetAllRecipiantsList() {
+            return base.Channel.GetAllRecipiantsList();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetAllRecipiantsListAsync() {
+            return base.Channel.GetAllRecipiantsListAsync();
+        }
+        
+        public string[] GetRecipientsList(int id) {
+            return base.Channel.GetRecipientsList(id);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetRecipientsListAsync(int id) {
+            return base.Channel.GetRecipientsListAsync(id);
+        }
+        
+        public void AddRecipiantList(string listName) {
+            base.Channel.AddRecipiantList(listName);
+        }
+        
+        public System.Threading.Tasks.Task AddRecipiantListAsync(string listName) {
+            return base.Channel.AddRecipiantListAsync(listName);
+        }
+        
+        public void AddRecipiant(int idList, string email) {
+            base.Channel.AddRecipiant(idList, email);
+        }
+        
+        public System.Threading.Tasks.Task AddRecipiantAsync(int idList, string email) {
+            return base.Channel.AddRecipiantAsync(idList, email);
+        }
+        
+        public void UpdateRecipiant(int id, int idList, string email) {
+            base.Channel.UpdateRecipiant(id, idList, email);
+        }
+        
+        public System.Threading.Tasks.Task UpdateRecipiantAsync(int id, int idList, string email) {
+            return base.Channel.UpdateRecipiantAsync(id, idList, email);
+        }
+        
+        public void DeleteRecipiantsList(int id) {
+            base.Channel.DeleteRecipiantsList(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteRecipiantsListAsync(int id) {
+            return base.Channel.DeleteRecipiantsListAsync(id);
+        }
+        
+        public void DeleteRecipiant(int id) {
+            base.Channel.DeleteRecipiant(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteRecipiantAsync(int id) {
+            return base.Channel.DeleteRecipiantAsync(id);
         }
     }
 }

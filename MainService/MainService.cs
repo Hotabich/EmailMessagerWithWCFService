@@ -56,6 +56,45 @@ namespace MainService
             
         }
 
+        //Work with DATABASE                                              
+
+        public List<string> GetAllRecipiantsList()
+        {
+            List<string> allRecipientList = _dbrepository.GetAllRecipiantsList();
+            return allRecipientList;
+        }
+
+        public List<string> GetRecipientsList(int id)
+        {
+            List<string> recipiantList = _dbrepository.GetRecipientsList(id);
+            return recipiantList;
+        }
+
+        public void AddRecipiantList(string listName)
+        {
+            _dbrepository.AddRecipiantList(listName);
+        }
+
+        public void AddRecipiant(int idList, string email)
+        {
+            _dbrepository.AddRecipiant(idList, email);
+        }
+
+        public void UpdateRecipiant(int id, int idList, string email)
+        {
+            _dbrepository.UpdateRecipiant(id, idList, email);
+        }
+
+        public void DeleteRecipiantsList(int id)
+        {
+            _dbrepository.DeleteRecipiantsList(id);
+        }
+
+        public void DeleteRecipiant(int id)
+        {            
+           _dbrepository.DeleteRecipiant(id);
+            
+        }
     }
 }
 
