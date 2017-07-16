@@ -29,7 +29,9 @@ namespace Wpf_Mail.ViewModel
         private string _message;
         private ObservableCollection<string> _fileName;
         private ObservableCollection<MailAddress> _receivers;
+        private ObservableCollection<string> _recipiantsLists;
         private MailAddress _currentReceiver;
+        private string _currentRecipiantList;
         private string _currentFile;
         private DelegateCommand _sendMessage;
         private DelegateCommand _addFile;
@@ -53,6 +55,16 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("Receivers");
             }
         }
+
+        public ObservableCollection<string> RecipiantsLists
+        {
+            get { return _recipiantsLists; }
+            set
+            {
+                _recipiantsLists = value;
+                OnPropertyChanged("RecipiantsLists");
+            }
+        }
         public MailAddress OwnerLogin { get; set; }
         public string OwnerPassword { get; set; }
         public MailAddress CurrentReceiver
@@ -64,6 +76,18 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("CurrentReceiver");
             }
         }
+
+        public string CurrentRecipiantList
+        {
+            get { return _currentRecipiantList; }
+            set
+            {
+                _currentRecipiantList = value;
+                GetRecipiantList();
+                OnPropertyChanged("CurrentRecipiantList");
+            }
+        }
+        
         public string CurrentFile
         {
             get { return _currentFile; }
@@ -151,14 +175,19 @@ namespace Wpf_Mail.ViewModel
 
             _client = new MailService.MainServiceClient("NetTcpBinding_IMainService");
 
-            //for debug
-            _client.AddRecipiantList("MyList1");
-            _client.AddRecipiantList("MyList2");
-            string[] list = _client.GetAllRecipiantsList();
-
+            _recipiantsLists = new ObservableCollection<string>(_client.GetAllRecipiantsList().ToList<string>());
+            
         }
 
         #region Methods
+        private void GetRecipiantList()
+        {
+            List<string> _recipiants = _client.GetRecipientsList(1).ToList();
+            foreach (var item in _recipiants)
+            {
+                _receivers.Add(new MailAddress(item));
+            }
+        }
         private void SendEmail()
         {
             if (Receivers.Count > 0)

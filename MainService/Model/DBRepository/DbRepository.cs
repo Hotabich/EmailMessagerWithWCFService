@@ -103,14 +103,15 @@ namespace MainService.Model.DBRepository
         public List<string> GetRecipientsList(int id)
         {
             List<string> recipiantList = new List<string>();
-            string query = "SELECT 'recipient' FROM 'recipients' WHERE idrecipientlist="+id+";";
+            string query = "SELECT recipient FROM 'recipients' WHERE idrecipientlist="+id+";";
+            connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                DbDataReader reader = command.ExecuteReader();
-                foreach (DbDataRecord item in reader)
+                
+                SQLiteDataReader reader = command.ExecuteReader();
+                foreach (DbDataRecord record in reader)
                 {
-                    recipiantList.Add(item["recipient"].ToString());
+                    recipiantList.Add(record[0].ToString());
                 }
                 connection.Close();
             }

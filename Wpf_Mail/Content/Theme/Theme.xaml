@@ -250,9 +250,20 @@
         <Setter Property="Margin" Value="10,10,0,0"/>
         <Setter Property="Grid.Row" Value="3"/>
         <Setter Property="Grid.Column" Value="0"/>
-        <Setter Property="Grid.ColumnSpan" Value="2"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>       
     </Style>
-    
+
+    <Style x:Key="RecipiaListListView" TargetType="{x:Type ListView}">
+        <Setter Property="Height" Value="135"/>
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="10,10,0,0"/>
+        <Setter Property="Grid.Row" Value="3"/>
+        <Setter Property="Grid.Column" Value="3"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>        
+    </Style>
+
     <Style x:Key="AddedFileListView" TargetType="{x:Type ListView}">
         <Setter Property="Height" Value="208"/>
         <Setter Property="Width" Value="250"/>
