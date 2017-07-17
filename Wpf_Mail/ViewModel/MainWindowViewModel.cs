@@ -29,10 +29,10 @@ namespace Wpf_Mail.ViewModel
         private string _message;
         private ObservableCollection<string> _fileName;
         private ObservableCollection<MailAddress> _receivers;
-        private ObservableCollection<RecipiantsList> _recipiantsLists;
+        private ObservableCollection<RecipiantList> _recipiantsLists;
         private MailAddress _currentReceiver;
-        private string _currentRecipiantList;
-        private string _currentFile;
+        private RecipiantList _currentRecipiantList;
+        //private string _currentFile;
         private DelegateCommand _sendMessage;
         private DelegateCommand _addFile;
         private DelegateCommand _deleteFile;
@@ -56,7 +56,7 @@ namespace Wpf_Mail.ViewModel
             }
         }
 
-        public ObservableCollection<RecipiantsList> RecipiantsLists
+        public ObservableCollection<RecipiantList> RecipiantsLists
         {
             get { return _recipiantsLists; }
             set
@@ -77,26 +77,28 @@ namespace Wpf_Mail.ViewModel
             }
         }
 
-        public string CurrentRecipiantList
+        public RecipiantList CurrentRecipiantList
         {
             get { return _currentRecipiantList; }
             set
             {
                 _currentRecipiantList = value;
-                GetRecipiantList();
+                GetRecipiantList(_currentRecipiantList.Id);
                 OnPropertyChanged("CurrentRecipiantList");
+                OnPropertyChanged("Receivers");
             }
         }
-        
-        public string CurrentFile
-        {
-            get { return _currentFile; }
-            set
-            {
-                _currentFile = value;
-                OnPropertyChanged("CurrentFile");
-            }
-        }
+
+        //public string CurrentFile
+        //{
+        //    get { return _currentFile; }
+        //    set
+        //    {
+        //        _currentFile = value;
+        //        OnPropertyChanged("CurrentFile");
+        //    }
+        //}
+
         public string Receiver
         {
             get { return _receiver; }
@@ -157,13 +159,13 @@ namespace Wpf_Mail.ViewModel
                 return _addFile ?? (_addFile = new DelegateCommand(AddMessageFile));
             }
         }
-        public DelegateCommand DeleteFile
-        {
-            get
-            {
-                return _deleteFile ?? (_deleteFile = new DelegateCommand(DeleteMessageFile));
-            }
-        }
+        //public DelegateCommand DeleteFile
+        //{
+        //    get
+        //    {
+        //        return _deleteFile ?? (_deleteFile = new DelegateCommand(DeleteMessageFile));
+        //    }
+        //}
         #endregion
 
         public MainWindowViewModel()
@@ -175,18 +177,35 @@ namespace Wpf_Mail.ViewModel
 
             _client = new MailService.MainServiceClient("NetTcpBinding_IMainService");
 
-            //_recipiantsLists = new ObservableCollection<RecipiantsList>(_client.GetAllRecipiantsList().ToList<RecipiantsList>());
+            _recipiantsLists = new ObservableCollection<RecipiantList>(ConvertToRecipiantList(_client.GetAllRecipiantsList()));
             
         }
 
         #region Methods
-        private void GetRecipiantList()
+        private List<RecipiantList> ConvertToRecipiantList(RecipiantList[] massive)
         {
-            List<string> _recipiants = _client.GetRecipientsList(1).ToList();
-            foreach (var item in _recipiants)
+            List<RecipiantList> allRecipiantList = new List<RecipiantList>();
+            for (int i = 0; i < massive.Length-1; i++)
             {
-                _receivers.Add(new MailAddress(item));
+                allRecipiantList.Add(massive[i]);
             }
+            return allRecipiantList;
+
+        }
+
+        private List<MailAddress> ConvertToReceiversList(List<Recipiant> recipiants)
+        {
+            List<MailAddress> recipiantList = new List<MailAddress>();
+            
+            foreach (Recipiant item in recipiants)
+            {
+                recipiantList.Add(new MailAddress(item.Mail));
+            }
+            return recipiantList;
+        }
+        private void GetRecipiantList(int id)
+        {
+            _receivers = new ObservableCollection<MailAddress>(ConvertToReceiversList(_client.GetRecipientsList(id).ToList()));            
         }
         private void SendEmail()
         {
@@ -265,10 +284,10 @@ namespace Wpf_Mail.ViewModel
             }
 
         }
-        private void DeleteMessageFile()
-        {
-            _fileName.Remove(_currentFile);
-        }
+        //private void DeleteMessageFile()
+        //{
+        //    _fileName.Remove(_currentFile);
+        //}
         private void OnPropertyChanged(string propertyChanged)
         {
             if (PropertyChanged != null)

@@ -89,7 +89,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\MessageInformation.cs" />
-    <Compile Include="Model\RecipiantsList.cs" />
     <Compile Include="View\CredentialWindow.xaml.cs">
       <DependentUpon>CredentialWindow.xaml</DependentUpon>
     </Compile>
@@ -170,7 +169,16 @@
     <None Include="Service References\MailService\item41.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\MailService\item5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MailService\MainService.wsdl" />
+    <None Include="Service References\MailService\Wpf_Mail.MailService.Recipiant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MailService\Wpf_Mail.MailService.RecipiantList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

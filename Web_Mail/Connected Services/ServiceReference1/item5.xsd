@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://Microsoft.ServiceModel.Samples" elementFormDefault="qualified" targetNamespace="http://Microsoft.ServiceModel.Samples" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MainService.Model" />
   <xs:import schemaLocation="http://localhost:8080/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/MainService.Model.DbModels" />
   <xs:element name="Send">
     <xs:complexType>
       <xs:sequence>
@@ -24,7 +25,7 @@
   <xs:element name="GetAllRecipiantsListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllRecipiantsListResult" nillable="true" type="q3:ArrayOfstring" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MainService.Model.DbModels" minOccurs="0" name="GetAllRecipiantsListResult" nillable="true" type="q3:ArrayOfRecipiantList" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -38,7 +39,7 @@
   <xs:element name="GetRecipientsListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRecipientsListResult" nillable="true" type="q4:ArrayOfstring" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MainService.Model.DbModels" minOccurs="0" name="GetRecipientsListResult" nillable="true" type="q4:ArrayOfRecipiant" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

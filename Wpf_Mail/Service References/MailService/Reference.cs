@@ -138,6 +138,144 @@ namespace Wpf_Mail.MailService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipiantList", Namespace="http://schemas.datacontract.org/2004/07/MainService.Model.DbModels")]
+    [System.SerializableAttribute()]
+    public partial class RecipiantList : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Recipiant", Namespace="http://schemas.datacontract.org/2004/07/MainService.Model.DbModels")]
+    [System.SerializableAttribute()]
+    public partial class Recipiant : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MailField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdList {
+            get {
+                return this.IdListField;
+            }
+            set {
+                if ((this.IdListField.Equals(value) != true)) {
+                    this.IdListField = value;
+                    this.RaisePropertyChanged("IdList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mail {
+            get {
+                return this.MailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MailField, value) != true)) {
+                    this.MailField = value;
+                    this.RaisePropertyChanged("Mail");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://Microsoft.ServiceModel.Samples", ConfigurationName="MailService.IMainService")]
     public interface IMainService {
@@ -149,16 +287,16 @@ namespace Wpf_Mail.MailService {
         System.Threading.Tasks.Task<string[]> SendAsync(Wpf_Mail.MailService.Message _message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsListResponse")]
-        string[] GetAllRecipiantsList();
+        Wpf_Mail.MailService.RecipiantList[] GetAllRecipiantsList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsListResponse")]
-        System.Threading.Tasks.Task<string[]> GetAllRecipiantsListAsync();
+        System.Threading.Tasks.Task<Wpf_Mail.MailService.RecipiantList[]> GetAllRecipiantsListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsListResponse")]
-        string[] GetRecipientsList(int id);
+        Wpf_Mail.MailService.Recipiant[] GetRecipientsList(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsListResponse")]
-        System.Threading.Tasks.Task<string[]> GetRecipientsListAsync(int id);
+        System.Threading.Tasks.Task<Wpf_Mail.MailService.Recipiant[]> GetRecipientsListAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantList", ReplyAction="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantListResponse")]
         void AddRecipiantList(string listName);
@@ -226,19 +364,19 @@ namespace Wpf_Mail.MailService {
             return base.Channel.SendAsync(_message);
         }
         
-        public string[] GetAllRecipiantsList() {
+        public Wpf_Mail.MailService.RecipiantList[] GetAllRecipiantsList() {
             return base.Channel.GetAllRecipiantsList();
         }
         
-        public System.Threading.Tasks.Task<string[]> GetAllRecipiantsListAsync() {
+        public System.Threading.Tasks.Task<Wpf_Mail.MailService.RecipiantList[]> GetAllRecipiantsListAsync() {
             return base.Channel.GetAllRecipiantsListAsync();
         }
         
-        public string[] GetRecipientsList(int id) {
+        public Wpf_Mail.MailService.Recipiant[] GetRecipientsList(int id) {
             return base.Channel.GetRecipientsList(id);
         }
         
-        public System.Threading.Tasks.Task<string[]> GetRecipientsListAsync(int id) {
+        public System.Threading.Tasks.Task<Wpf_Mail.MailService.Recipiant[]> GetRecipientsListAsync(int id) {
             return base.Channel.GetRecipientsListAsync(id);
         }
         

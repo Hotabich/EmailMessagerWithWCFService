@@ -35,7 +35,13 @@
             <ListView x:Name="EmailListListView" Style="{StaticResource EmailListListView}" ItemsSource="{Binding Receivers, Mode=TwoWay}" SelectedItem="{Binding CurrentReceiver, Mode=TwoWay}"></ListView>
             <TextBox x:Name="EmailMessageTexBox" Style="{StaticResource EmailMessageTexBox}" Text="{Binding Message, Mode=OneWayToSource}"/>
             <Button x:Name="SendBtn" Style="{StaticResource SendBtn}" Command="{Binding SendMessage}"></Button>
-        <ListView x:Name="RecipiantsListListView" Style="{StaticResource RecipiaListListView}" ItemsSource="{Binding RecipiantsLists, Mode=TwoWay}" SelectedItem="{Binding CurrentRecipiantList, Mode=TwoWay}"></ListView>
+        <ListView x:Name="RecipiantsListListView" Style="{StaticResource RecipiaListListView}" ItemsSource="{Binding RecipiantsLists, Mode=TwoWay}" SelectedItem="{Binding CurrentRecipiantList, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <!--<Button x:Name="AddFile" Style="{StaticResource AddFile}" Command="{Binding AddFile}" Visibility="Hidden"></Button>
         <Button x:Name="DeleteFile" Style="{StaticResource DeleteFile}" Command="{Binding DeleteFile}" Visibility="Hidden"></Button>
         <ListView x:Name="AddedFileListView" Style="{StaticResource AddedFileListView}" ItemsSource="{Binding FileName, Mode=TwoWay}" SelectedItem="{Binding CurrentFile, Mode=TwoWay}" Visibility="Hidden"></ListView>-->
