@@ -29,7 +29,7 @@ namespace Wpf_Mail.ViewModel
         private string _message;
         private ObservableCollection<string> _fileName;
         private ObservableCollection<MailAddress> _receivers;
-        private ObservableCollection<string> _recipiantsLists;
+        private ObservableCollection<RecipiantsList> _recipiantsLists;
         private MailAddress _currentReceiver;
         private string _currentRecipiantList;
         private string _currentFile;
@@ -56,7 +56,7 @@ namespace Wpf_Mail.ViewModel
             }
         }
 
-        public ObservableCollection<string> RecipiantsLists
+        public ObservableCollection<RecipiantsList> RecipiantsLists
         {
             get { return _recipiantsLists; }
             set
@@ -175,7 +175,7 @@ namespace Wpf_Mail.ViewModel
 
             _client = new MailService.MainServiceClient("NetTcpBinding_IMainService");
 
-            _recipiantsLists = new ObservableCollection<string>(_client.GetAllRecipiantsList().ToList<string>());
+            //_recipiantsLists = new ObservableCollection<RecipiantsList>(_client.GetAllRecipiantsList().ToList<RecipiantsList>());
             
         }
 

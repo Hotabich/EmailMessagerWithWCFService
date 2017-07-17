@@ -10,6 +10,7 @@ using MainService.Model;
 using System.IO;
 using System.Collections.ObjectModel;
 using MainService.Model.DBRepository;
+using MainService.Model.DbModels;
 
 namespace MainService
 {
@@ -58,15 +59,15 @@ namespace MainService
 
         //Work with DATABASE                                              
 
-        public List<string> GetAllRecipiantsList()
+        public List<RecipiantList> GetAllRecipiantsList()
         {
-            List<string> allRecipientList = _dbrepository.GetAllRecipiantsList();
+            List<RecipiantList> allRecipientList = _dbrepository.GetAllRecipiantsList();
             return allRecipientList;
         }
 
-        public List<string> GetRecipientsList(int id)
+        public List<Recipiant> GetRecipientsList(int id)
         {
-            List<string> recipiantList = _dbrepository.GetRecipientsList(id);
+            List<Recipiant> recipiantList = _dbrepository.GetRecipientsList(id);
             return recipiantList;
         }
 

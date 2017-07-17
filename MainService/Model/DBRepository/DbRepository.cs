@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using System.Data.Common;
 using System.IO;
 using MainService.Model.Interfaces;
+using MainService.Model.DbModels;
 
 namespace MainService.Model.DBRepository
 {
@@ -82,9 +83,9 @@ namespace MainService.Model.DBRepository
             }
         }
 
-        public List<string> GetAllRecipiantsList()
+        public List<RecipiantList> GetAllRecipiantsList()
         {
-            List<string> allRecipiant = new List<string>();
+            List<RecipiantList> allRecipiant = new List<RecipiantList>();
             string query = "SELECT * FROM 'recipientsList';";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
@@ -92,7 +93,7 @@ namespace MainService.Model.DBRepository
                 DbDataReader reader = command.ExecuteReader();
                 foreach (DbDataRecord item in reader)
                 {
-                    allRecipiant.Add(item["listName"].ToString());
+                    allRecipiant.Add(new RecipiantList(Convert.ToInt32(item["id"]), item["listName"].ToString()));
                 }
                 reader.Close();
                 connection.Close();
@@ -100,10 +101,10 @@ namespace MainService.Model.DBRepository
             return allRecipiant;
         }
 
-        public List<string> GetRecipientsList(int id)
+        public List<Recipiant> GetRecipientsList(int id)
         {
-            List<string> recipiantList = new List<string>();
-            string query = "SELECT recipient FROM 'recipients' WHERE idrecipientlist="+id+";";
+            List<Recipiant> recipiantList = new List<Recipiant>();
+            string query = "SELECT * FROM 'recipients' WHERE idrecipientlist="+id+";";
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
@@ -111,7 +112,7 @@ namespace MainService.Model.DBRepository
                 SQLiteDataReader reader = command.ExecuteReader();
                 foreach (DbDataRecord record in reader)
                 {
-                    recipiantList.Add(record[0].ToString());
+                    recipiantList.Add(new Recipiant(Convert.ToInt32(record["id"]), Convert.ToInt32(record["idrecipientlist"]), record["recipient"].ToString()));
                 }
                 connection.Close();
             }

@@ -64,6 +64,8 @@
     <Compile Include="IMainService.cs" />
     <Compile Include="MainService.cs" />
     <Compile Include="Interfaces\IDbRepository.cs" />
+    <Compile Include="Model\DbModels\Recipiant.cs" />
+    <Compile Include="Model\DbModels\RecipiantList.cs" />
     <Compile Include="Model\DBRepository\DbRepository.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

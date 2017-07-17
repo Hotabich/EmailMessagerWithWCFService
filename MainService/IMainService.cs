@@ -8,6 +8,8 @@ using MainService.Model;
 using System.Net;
 using System.IO;
 using System.Net.Mail;
+using MainService.Model.DbModels;
+
 
 namespace MainService
 {
@@ -19,9 +21,9 @@ namespace MainService
         List<string> Send(Message _message);
 
         [OperationContract]
-        List<string> GetAllRecipiantsList();
+        List<RecipiantList> GetAllRecipiantsList();
         [OperationContract]
-        List<string> GetRecipientsList(int id);
+        List<Recipiant> GetRecipientsList(int id);
         [OperationContract]
         void AddRecipiantList(string listName);
         [OperationContract]
