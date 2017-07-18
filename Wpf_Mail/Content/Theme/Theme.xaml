@@ -16,6 +16,7 @@
     
 
     <!--Theme for CredentialWindow-->
+    
     <Style x:Key="CredentialWindow" TargetType="{x:Type Window}">
         <Setter Property="Background" Value="{StaticResource CredentialWindow.Background}"/>
         <Setter Property="BorderThickness" Value="5"/>
@@ -134,10 +135,10 @@
             <Setter Property="Height" Value="30"/>
             <Setter Property="Background" Value="LightBlue"/>
             <Setter Property="Content" Value="Send"/>
-            <Setter Property="Grid.Row" Value="4"/>
-            <Setter Property="Grid.Column" Value="2"/>
+            <Setter Property="Grid.Row" Value="3"/>
+            <Setter Property="Grid.Column" Value="4"/>
             <Setter Property="FontWeight" Value="ExtraBlack"/>
-            <Setter Property="Margin" Value="65,5,65,0"/>
+            <Setter Property="Margin" Value="105,140,0,0"/>
         </Style.Setters>
         
     </Style>
@@ -153,13 +154,24 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
+    <Style x:Key="ListLabel" TargetType="{x:Type Label}">
+        <Setter Property="Content" Value="Name of List"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="10,5,0,0"/>
+        <Setter Property="Grid.Row" Value="0"/>
+        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
     <Style x:Key="EnterMessageLabel" TargetType="{x:Type Label}">
         <Setter Property="Content" Value="Enter Your Message"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="10,5,0,0"/>
         <Setter Property="Grid.Row" Value="2"/>
-        <Setter Property="Grid.Column" Value="2"/>        
+        <Setter Property="Grid.Column" Value="4"/>        
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
@@ -169,7 +181,7 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="10,5,0,0"/>
         <Setter Property="Grid.Row" Value="0"/>
-        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="Grid.Column" Value="4"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
@@ -194,15 +206,26 @@
         <Setter Property="Grid.Column" Value="0"/>        
     </Style>
 
+    <Style x:Key="ListNameTexBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="170"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="5,5,0,0"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.Column" Value="2"/>
+    </Style>
+
     <Style x:Key="SubjectEmailTexBox" TargetType="{x:Type TextBox}">
         <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="255"/>
+        <Setter Property="Width" Value="300"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="10,5,0,0"/>
         <Setter Property="Grid.Row" Value="1"/>
-        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="Grid.Column" Value="4"/>
     </Style>
 
     <Style x:Key="EnterEmailBtn" TargetType="{x:Type Button}">
@@ -217,7 +240,20 @@
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
     </Style>
-    
+
+    <Style x:Key="AddListBtn" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Content" Value="Add"/>
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.Column" Value="3"/>
+        <Setter Property="FontWeight" Value="ExtraBlack"/>
+    </Style>
+
     <Style x:Key="DeleteEmailBtn" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="25"/>
         <Setter Property="Width" Value="70"/>
@@ -244,7 +280,7 @@
     
     <Style x:Key="EmailListListView" TargetType="{x:Type ListView}">
         <Setter Property="Height" Value="135"/>
-        <Setter Property="Width" Value="350"/>
+        <Setter Property="Width" Value="265"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="10,10,0,0"/>
@@ -258,9 +294,9 @@
         <Setter Property="Width" Value="250"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Margin" Value="10,10,0,0"/>
+        <Setter Property="Margin" Value="5,10,0,0"/>
         <Setter Property="Grid.Row" Value="3"/>
-        <Setter Property="Grid.Column" Value="3"/>
+        <Setter Property="Grid.Column" Value="2"/>
         <Setter Property="Grid.ColumnSpan" Value="2"/>        
     </Style>
 
@@ -278,13 +314,13 @@
 
     <Style x:Key="EmailMessageTexBox" TargetType="{x:Type TextBox}">
         <Setter Property="Height" Value="135"/>
-        <Setter Property="Width" Value="250"/>
+        <Setter Property="Width" Value="300"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="10,10,0,0"/>
         <Setter Property="Grid.Row" Value="3"/>
-        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="Grid.Column" Value="4"/>
         <Setter Property="Grid.RowSpan" Value="3"/>
     </Style>
 
