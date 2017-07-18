@@ -17,7 +17,7 @@ namespace Wpf_Mail.Converters
 
         }
 
-        public static List<MailAddress> ConvertToReceiversList(List<Recipiant> recipiants)
+        public static List<MailAddress> ConvertToReceiversMailList(List<Recipiant> recipiants)
         {
             List<MailAddress> recipiantList = new List<MailAddress>();
 
@@ -27,5 +27,7 @@ namespace Wpf_Mail.Converters
             }
             return recipiantList;
         }
+        
+
     }
 }

@@ -29,7 +29,7 @@ namespace Wpf_Mail
         {
             InitializeComponent();
             OpenCredential();
-            _messager = new MainWindowViewModel();            
+            _messager = new MainWindowViewModel();
             _messager.OwnerLogin = _login;
             _messager.OwnerPassword = _password;
             DataContext = _messager;

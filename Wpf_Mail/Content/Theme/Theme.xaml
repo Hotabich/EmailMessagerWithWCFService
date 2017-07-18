@@ -14,6 +14,10 @@
                 ImageSource="pack://application:,,,/Wpf_Mail;component/Content/Images/information.jpg"
                 Stretch="Fill"/>
     
+    <ImageBrush x:Key="EditWindow.Background" 
+                ImageSource="pack://application:,,,/Wpf_Mail;component/Content/Images/edit.jpg"
+                Stretch="Fill"/>
+    
 
     <!--Theme for CredentialWindow-->
     
@@ -121,8 +125,88 @@
         <Setter Property="Opacity" Value="0.75"/>
     </Style>
     
+<!--Theme for EditListWindow-->
+    <Style x:Key="EditListWindow" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="{StaticResource EditWindow.Background}"/>        
+    </Style>
+    
+    <Style x:Key="EditLabel" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="20"/>        
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="ExtraBlack"/>        
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>        
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Grid.Row" Value="0"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>
+    </Style>
 
+    <Style x:Key="RecipiantName" TargetType="{x:Type Label}">              
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Content" Value="Enter Recipiant Name"/>              
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>
+    </Style>
 
+    <Style x:Key="EnterRecipiantName" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="170"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+        <Setter Property="Grid.Row" Value="2"/>
+        <Setter Property="Grid.Column" Value="0"/>
+    </Style>
+
+    <Style x:Key="AddRecipiant" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Content" Value="Add"/>
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>        
+        <Setter Property="Grid.Row" Value="2"/>
+        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="FontWeight" Value="ExtraBlack"/>
+    </Style>
+
+    <Style x:Key="DeleteRecipiant" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Content" Value="Delete"/>
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Grid.Row" Value="5"/>
+        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="FontWeight" Value="ExtraBlack"/>
+    </Style>
+
+    <Style x:Key="RecipiantList" TargetType="{x:Type Label}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Content" Value=" Recipiant List"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Grid.Row" Value="3"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>
+    </Style>
+
+    <Style x:Key="RecipiantsList" TargetType="{x:Type ListView}">
+        <Setter Property="Height" Value="250"/>
+        <Setter Property="Width" Value="265"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="Grid.Row" Value="4"/>
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="Grid.ColumnSpan" Value="2"/>
+    </Style>
 
     <!--Theme for MainWindow-->
     <Style x:Key="MainWindow" TargetType="{x:Type Window}">

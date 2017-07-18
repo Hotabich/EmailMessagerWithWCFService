@@ -9,6 +9,7 @@ using System.Net.Mail;
 using Wpf_Mail.MailService;
 using Wpf_Mail.Model;
 using Wpf_Mail.Converters;
+using Wpf_Mail.View;
 
 
 namespace Wpf_Mail.ViewModel
@@ -18,9 +19,10 @@ namespace Wpf_Mail.ViewModel
 
         #region Fields   
         private string _receiver;
-        private string _listName;
+        private string _listName;        
         private MessageInformation _info;    
         private MainServiceClient _client;
+        private EditRecipiantList _editRecipiantList;
         private string _message;
         private ObservableCollection<string> _fileName;
         private ObservableCollection<MailAddress> _receivers;
@@ -176,7 +178,7 @@ namespace Wpf_Mail.ViewModel
             _receivers = new ObservableCollection<MailAddress>();
             _fileName = new ObservableCollection<string>();
 
-            _info = new Model.MessageInformation();
+            _info = new Model.MessageInformation();            
 
             _client = new MailService.MainServiceClient("NetTcpBinding_IMainService");
 
@@ -201,7 +203,8 @@ namespace Wpf_Mail.ViewModel
         }
         private void EditRecipiantList()
         {
-
+            _editRecipiantList = new View.EditRecipiantList(CurrentRecipiantList);
+            _editRecipiantList.Show();
         }
         private void DeleteRecipiantList()
         {
@@ -210,7 +213,7 @@ namespace Wpf_Mail.ViewModel
         }
         private void GetRecipiantList(int id)
         {
-            _receivers = new ObservableCollection<MailAddress>(Converter.ConvertToReceiversList(_client.GetRecipientsList(id).ToList()));            
+            _receivers = new ObservableCollection<MailAddress>(Converter.ConvertToReceiversMailList(_client.GetRecipientsList(id).ToList()));            
         }
         private void SendEmail()
         {

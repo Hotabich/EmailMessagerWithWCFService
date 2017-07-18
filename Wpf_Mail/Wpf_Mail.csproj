@@ -90,6 +90,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\Converter.cs" />
     <Compile Include="Model\MessageInformation.cs" />
+    <Compile Include="ViewModel\EditRecipiantListViewModel.cs" />
     <Compile Include="View\CredentialWindow.xaml.cs">
       <DependentUpon>CredentialWindow.xaml</DependentUpon>
     </Compile>
@@ -232,6 +233,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\edit.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

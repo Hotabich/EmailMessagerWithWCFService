@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf_Mail.MailService;
+using Wpf_Mail.ViewModel;
 
 namespace Wpf_Mail.View
 {
@@ -19,9 +21,11 @@ namespace Wpf_Mail.View
     /// </summary>
     public partial class EditRecipiantList : Window
     {
-        public EditRecipiantList()
-        {
+       
+        public EditRecipiantList(RecipiantList list)
+        {            
             InitializeComponent();
+            DataContext = new EditRecipiantListViewModel(list);
         }
     }
 }

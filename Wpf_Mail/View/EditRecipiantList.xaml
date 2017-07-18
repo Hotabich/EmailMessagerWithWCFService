@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_Mail.View"
         mc:Ignorable="d"
-        Title="EditRecipiantList" Height="300" Width="300">
-    <Grid>
-        
+        Title="EditRecipiantList" Height="400" Width="300" ResizeMode="NoResize"
+        Style="{StaticResource EditListWindow}">
+    <Grid Opacity="0.75">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.12*"></RowDefinition>
+            <RowDefinition Height="0.08*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="ListName" Style="{StaticResource EditLabel}" Content="{Binding Path=ListName}"/>
+        <Label x:Name="RecipiantName" Style="{StaticResource RecipiantName}"/>
+        <TextBox x:Name="EnterRecipiantName" Style="{StaticResource EnterRecipiantName}"></TextBox>
+        <Button x:Name="AddRecipiant" Style="{StaticResource AddRecipiant}"></Button>
+        <Label x:Name="RecipiantList" Style="{StaticResource RecipiantList}"/>
+        <ListView x:Name="RecipiantsList" Style="{StaticResource RecipiantsList}" ItemsSource="{Binding RecipiantList, Mode=OneWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Mail}">Mail</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=IdList}">List</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="DeleteRecipiant" Style="{StaticResource DeleteRecipiant}"></Button>
+
+
     </Grid>
 </Window>

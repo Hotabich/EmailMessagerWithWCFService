@@ -27,7 +27,7 @@
         <Label x:Name="EnterMessageLabel" Style="{StaticResource EnterMessageLabel}" ></Label>
         <Label x:Name="AddFileLabel" Style="{StaticResource AddFilelLabel}" Visibility="Hidden" />
         <Label x:Name="SubjectLabel" Style="{StaticResource SubjectLabel}"/>
-        <Label x:Name="ListLabel" Style="{StaticResource ListLabel}" Grid.ColumnSpan="1"></Label>
+        <Label x:Name="ListLabel" Style="{StaticResource ListLabel}"></Label>
         <TextBox x:Name="ListNameTexBox" Style="{StaticResource ListNameTexBox}" Text="{Binding ListName, Mode=TwoWay}"/>
         <TextBox x:Name="EnterEmailTexBox" Style="{StaticResource EnterEmailTexBox}" Text="{Binding Receiver, Mode=TwoWay}" />
         <TextBox x:Name="SubjectEmailTexBox" Style="{StaticResource SubjectEmailTexBox}" Text="{Binding Subject, Mode=OneWayToSource}"/>
