@@ -26,13 +26,13 @@ namespace Wpf_Mail.ViewModel
         private ObservableCollection<MailAddress> _receivers;
         private ObservableCollection<RecipiantList> _recipiantsLists;
         private MailAddress _currentReceiver;
-        private RecipiantList _currentRecipiantList;
-        //private string _currentFile;
-        private DelegateCommand _sendMessage;
-        private DelegateCommand _addFile;
-        //private DelegateCommand _deleteFile;
+        private RecipiantList _currentRecipiantList;       
+        private DelegateCommand _sendMessage;                
         private DelegateCommand _addReceiver;
         private DelegateCommand _deleteReceiver;
+        private DelegateCommand _addNewList;
+        private DelegateCommand _deleteList;
+        private DelegateCommand _editList;
 
         #endregion
 
@@ -50,7 +50,6 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("Receivers");
             }
         }
-
         public ObservableCollection<RecipiantList> RecipiantsLists
         {
             get { return _recipiantsLists; }
@@ -71,29 +70,24 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("CurrentReceiver");
             }
         }
-
         public RecipiantList CurrentRecipiantList
         {
             get { return _currentRecipiantList; }
             set
             {
                 _currentRecipiantList = value;
-                GetRecipiantList(_currentRecipiantList.Id);
+                if (_currentRecipiantList !=null)
+                {
+                    GetRecipiantList(_currentRecipiantList.Id);
+                }
+                else
+                {
+                    Receivers = null;
+                }
                 OnPropertyChanged("CurrentRecipiantList");
                 OnPropertyChanged("Receivers");
             }
-        }
-
-        //public string CurrentFile
-        //{
-        //    get { return _currentFile; }
-        //    set
-        //    {
-        //        _currentFile = value;
-        //        OnPropertyChanged("CurrentFile");
-        //    }
-        //}
-
+        }        
         public string Receiver
         {
             get { return _receiver; }
@@ -103,7 +97,6 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("Receiver");
             }
         }
-
         public string ListName
         {
             get { return _listName; }
@@ -132,7 +125,15 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("Message");
             }
         }
+
         //Command
+        public DelegateCommand AddNewList
+        {
+            get
+            {
+                return _addNewList ?? (_addNewList = new DelegateCommand(AddList));
+            }
+        }       
         public DelegateCommand SendMessage
         {
             get
@@ -140,7 +141,6 @@ namespace Wpf_Mail.ViewModel
                 return _sendMessage ?? (_sendMessage = new DelegateCommand(SendEmail));
             }
         }
-
         public DelegateCommand AddReceiver
         {
             get
@@ -148,29 +148,27 @@ namespace Wpf_Mail.ViewModel
                 return _addReceiver ?? (_addReceiver = new DelegateCommand(AddEmailReceiver));
             }
         }
-
         public DelegateCommand DeleteReceiver
         {
             get
             {
                 return _deleteReceiver ?? (_deleteReceiver = new DelegateCommand(DeleteEmailReceiver));
             }
-        }
-
-        public DelegateCommand AddFile
+        }         
+        public DelegateCommand DeleteList
         {
             get
             {
-                return _addFile ?? (_addFile = new DelegateCommand(AddMessageFile));
+                return _deleteList ?? (_deleteList = new DelegateCommand(DeleteRecipiantList));
             }
         }
-        //public DelegateCommand DeleteFile
-        //{
-        //    get
-        //    {
-        //        return _deleteFile ?? (_deleteFile = new DelegateCommand(DeleteMessageFile));
-        //    }
-        //}
+        public DelegateCommand EditList
+        {
+            get
+            {
+                return _editList ?? (_editList = new DelegateCommand(EditRecipiantList));
+            }
+        }
         #endregion
 
         public MainWindowViewModel()
@@ -186,8 +184,30 @@ namespace Wpf_Mail.ViewModel
             
         }
 
-        #region Methods              
-       
+        #region Methods            
+        private void AddList()
+        {
+            if (!string.IsNullOrEmpty(ListName))
+            {
+                _client.AddRecipiantList(ListName);
+                _recipiantsLists.Add(new RecipiantList() { Name = ListName });
+
+            }
+            else
+            {
+                _info.Show("Error", "First you must specify the name of List");
+                return;
+            }
+        }
+        private void EditRecipiantList()
+        {
+
+        }
+        private void DeleteRecipiantList()
+        {
+            _client.DeleteRecipiantsList(CurrentRecipiantList.Id);
+            _recipiantsLists.Remove(CurrentRecipiantList);                
+        }
         private void GetRecipiantList(int id)
         {
             _receivers = new ObservableCollection<MailAddress>(Converter.ConvertToReceiversList(_client.GetRecipientsList(id).ToList()));            
@@ -256,23 +276,7 @@ namespace Wpf_Mail.ViewModel
             {
                 _receivers.Remove(_currentReceiver);
             }
-        }
-        private void AddMessageFile()
-        {
-
-            OpenFileDialog dialog = new OpenFileDialog();
-            bool? result = dialog.ShowDialog();
-            if (result == true)
-            {
-
-                _fileName.Add(dialog.FileName);
-            }
-
-        }
-        //private void DeleteMessageFile()
-        //{
-        //    _fileName.Remove(_currentFile);
-        //}
+        }        
         private void OnPropertyChanged(string propertyChanged)
         {
             if (PropertyChanged != null)

@@ -99,6 +99,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\EditRecipiantList.xaml.cs">
+      <DependentUpon>EditRecipiantList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InformationWindow.xaml.cs">
       <DependentUpon>InformationWindow.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
     <Page Include="Content\Theme\Theme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EditRecipiantList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\InformationWindow.xaml">
       <SubType>Designer</SubType>

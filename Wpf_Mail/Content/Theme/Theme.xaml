@@ -266,7 +266,33 @@
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
     </Style>
-    
+
+    <Style x:Key="DeleteListBtn" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Content" Value="Delete"/>
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,147,0,0"/>
+        <Setter Property="Grid.Row" Value="3"/>
+        <Setter Property="Grid.Column" Value="3"/>
+        <Setter Property="FontWeight" Value="ExtraBlack"/>
+    </Style>
+
+    <Style x:Key="EditListBtn" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Content" Value="Edit"/>
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="5,147,0,0"/>
+        <Setter Property="Grid.Row" Value="3"/>
+        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="FontWeight" Value="ExtraBlack"/>
+    </Style>
+
     <Style x:Key="EmailListLabel" TargetType="{x:Type Label}">
         <Setter Property="Content" Value="Email List"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -322,6 +348,9 @@
         <Setter Property="Grid.Row" Value="3"/>
         <Setter Property="Grid.Column" Value="4"/>
         <Setter Property="Grid.RowSpan" Value="3"/>
+        <Setter Property="SpellCheck.IsEnabled" Value="True"/>
+        <Setter Property="Language" Value="ru-ru"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
     </Style>
 
     <Style x:Key="AddFile" TargetType="{x:Type Button}">
