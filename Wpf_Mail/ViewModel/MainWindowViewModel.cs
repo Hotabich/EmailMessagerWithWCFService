@@ -17,7 +17,7 @@ namespace Wpf_Mail.ViewModel
     public class MainWindowViewModel: INotifyPropertyChanged
     {
 
-        #region Fields   
+        #region Fields         
         private string _receiver;
         private string _listName;        
         private MessageInformation _info;    
@@ -126,7 +126,7 @@ namespace Wpf_Mail.ViewModel
                 _message = value;
                 OnPropertyChanged("Message");
             }
-        }
+        }        
 
         //Command
         public DelegateCommand AddNewList
@@ -174,7 +174,7 @@ namespace Wpf_Mail.ViewModel
         #endregion
 
         public MainWindowViewModel()
-        {
+        {            
             _receivers = new ObservableCollection<MailAddress>();
             _fileName = new ObservableCollection<string>();
 
@@ -203,8 +203,17 @@ namespace Wpf_Mail.ViewModel
         }
         private void EditRecipiantList()
         {
-            _editRecipiantList = new View.EditRecipiantList(CurrentRecipiantList);
-            _editRecipiantList.Show();
+            if (CurrentRecipiantList != null)
+            {               
+                _editRecipiantList = new View.EditRecipiantList(CurrentRecipiantList);
+                _editRecipiantList.ShowDialog();
+                GetRecipiantList(_currentRecipiantList.Id);
+
+            }
+            else
+            {
+                _info.Show("Warning", "First we must select a RecipiantList!!!");
+            }
         }
         private void DeleteRecipiantList()
         {

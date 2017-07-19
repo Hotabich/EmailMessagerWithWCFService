@@ -25,9 +25,7 @@ namespace Wpf_Mail.View
         public EditRecipiantList(RecipiantList list)
         {            
             InitializeComponent();
-            DataContext = new EditRecipiantListViewModel(list);
-        }
-
-        
+            DataContext = new EditRecipiantListViewModel(list);            
+        }        
     }
 }

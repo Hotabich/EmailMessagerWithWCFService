@@ -17,12 +17,14 @@ namespace Wpf_Mail.ViewModel
     {
         #region 
         private MessageInformation _info;
+        private Recipiant _currentRecipiant;
         private string _nameRecipiant;
         private MainServiceClient _client;
         private string _listName;
         private int _idList;
         private ObservableCollection<Recipiant> _recipiantList;
         private DelegateCommand _addRecipiant;
+        private DelegateCommand _deleteRecipiant;
         #endregion
 
         #region Events
@@ -59,12 +61,13 @@ namespace Wpf_Mail.ViewModel
             }
         }
 
-        //Commands
-        public DelegateCommand AddRecipiant
+        public Recipiant CurrentRecipiant
         {
-            get
+            get { return _currentRecipiant; }
+            set
             {
-                return _addRecipiant ?? (_addRecipiant = new DelegateCommand(AddNewRecipiant));
+                _currentRecipiant = value;
+                OnPropertyChanged("CurrentRecipiant");
             }
         }
 
@@ -77,6 +80,24 @@ namespace Wpf_Mail.ViewModel
                 OnPropertyChanged("RecipiantList");
             }
         }
+
+        //Commands
+        public DelegateCommand AddRecipiant
+        {
+            get
+            {
+                return _addRecipiant ?? (_addRecipiant = new DelegateCommand(AddNewRecipiant));
+            }
+        }
+
+        public DelegateCommand DeleteRecipiant
+        {
+            get
+            {
+                return _deleteRecipiant ?? (_deleteRecipiant = new DelegateCommand(DeleteOldRecipiant));
+            }
+        }
+        
         #endregion
 
         public EditRecipiantListViewModel(RecipiantList list)
@@ -117,6 +138,12 @@ namespace Wpf_Mail.ViewModel
                 return;
             }
             
+        }
+
+        private void DeleteOldRecipiant()
+        {
+            _client.DeleteRecipiant(CurrentRecipiant.Id);
+            RecipiantList = new ObservableCollection<Recipiant>(_client.GetRecipientsList(IdList));
         }
 
         private void OnPropertyChanged(string propertyChanged)

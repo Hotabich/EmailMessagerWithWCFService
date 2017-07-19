@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Wpf_Mail"
         mc:Ignorable="d"
         Title="Messager" Height="350" Width="950" ResizeMode="NoResize"
-        Style="{StaticResource MainWindow}">
+        Style="{StaticResource MainWindow}" IsEnabled="{Binding CanWork}">
     <Grid Opacity="0.75">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.15*"></RowDefinition>

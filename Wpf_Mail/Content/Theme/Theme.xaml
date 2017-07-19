@@ -172,6 +172,11 @@
         <Setter Property="Grid.Row" Value="2"/>
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=EnterRecipiantName, Path=Text}" Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="DeleteRecipiant" TargetType="{x:Type Button}">
@@ -185,6 +190,11 @@
         <Setter Property="Grid.Row" Value="5"/>
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=RecipiantsList, Path=SelectedItem}" Value="{x:Null}">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="RecipiantList" TargetType="{x:Type Label}">
@@ -222,9 +232,13 @@
             <Setter Property="Grid.Row" Value="3"/>
             <Setter Property="Grid.Column" Value="4"/>
             <Setter Property="FontWeight" Value="ExtraBlack"/>
-            <Setter Property="Margin" Value="105,140,0,0"/>
+            <Setter Property="Margin" Value="105,140,0,0"/>            
         </Style.Setters>
-        
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=EmailMessageTexBox, Path=Text}" Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="EnterEmailLabel" TargetType="{x:Type Label}">        
@@ -323,6 +337,11 @@
         <Setter Property="Grid.Row" Value="1"/>
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=EnterEmailTexBox, Path=Text}" Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="AddListBtn" TargetType="{x:Type Button}">
@@ -336,6 +355,11 @@
         <Setter Property="Grid.Row" Value="1"/>
         <Setter Property="Grid.Column" Value="3"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=ListNameTexBox, Path=Text}" Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="DeleteEmailBtn" TargetType="{x:Type Button}">
@@ -347,8 +371,13 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="10,147,0,0"/>
         <Setter Property="Grid.Row" Value="3"/>
-        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="Grid.Column" Value="1"/>        
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=EmailListListView, Path=SelectedItem}" Value="{x:Null}">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="DeleteListBtn" TargetType="{x:Type Button}">
@@ -362,6 +391,11 @@
         <Setter Property="Grid.Row" Value="3"/>
         <Setter Property="Grid.Column" Value="3"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=RecipiantsListListView, Path=SelectedItem}" Value="{x:Null}">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="EditListBtn" TargetType="{x:Type Button}">
@@ -375,6 +409,11 @@
         <Setter Property="Grid.Row" Value="3"/>
         <Setter Property="Grid.Column" Value="2"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=RecipiantsListListView, Path=SelectedItem}" Value="{x:Null}">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="EmailListLabel" TargetType="{x:Type Label}">

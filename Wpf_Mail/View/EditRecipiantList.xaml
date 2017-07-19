@@ -26,7 +26,7 @@
         <TextBox x:Name="EnterRecipiantName" Style="{StaticResource EnterRecipiantName}" Text="{Binding NameRecipiant, Mode=TwoWay}"></TextBox>
         <Button x:Name="AddRecipiant" Style="{StaticResource AddRecipiant}" Command="{Binding AddRecipiant}"></Button>
         <Label x:Name="RecipiantList" Style="{StaticResource RecipiantList}"/>
-        <ListView x:Name="RecipiantsList" Style="{StaticResource RecipiantsList}" ItemsSource="{Binding RecipiantList, Mode=OneWay}">
+        <ListView x:Name="RecipiantsList" Style="{StaticResource RecipiantsList}" ItemsSource="{Binding RecipiantList, Mode=OneWay}" SelectedItem="{Binding CurrentRecipiant, Mode=TwoWay}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Mail}" Width="210">Mail</GridViewColumn>
@@ -34,7 +34,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="DeleteRecipiant" Style="{StaticResource DeleteRecipiant}"></Button>
+        <Button x:Name="DeleteRecipiant" Style="{StaticResource DeleteRecipiant}" Command="{Binding DeleteRecipiant}"></Button>
 
 
     </Grid>
