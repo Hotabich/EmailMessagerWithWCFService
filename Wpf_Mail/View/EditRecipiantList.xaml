@@ -35,6 +35,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="DeleteRecipiant" Style="{StaticResource DeleteRecipiant}" Command="{Binding DeleteRecipiant}"></Button>
+        <Button x:Name="OK" Style="{StaticResource OK}" Click="OK_Click" ></Button>
 
 
     </Grid>

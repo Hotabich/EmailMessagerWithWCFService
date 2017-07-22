@@ -74,7 +74,7 @@ namespace MainService.Model.DBRepository
 
         public void DeleteRecipiantsList(int id)
         {
-            string query = "DELETE FROM 'recipientsList' WHERE id=" + id + ";";
+            string query = "DELETE FROM 'recipientsList' WHERE id=" + id + ";" + "DELETE FROM 'recipients' WHERE idrecipientlist=" + id + ";";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 connection.Open();

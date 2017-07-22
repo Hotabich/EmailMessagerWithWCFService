@@ -26,6 +26,11 @@ namespace Wpf_Mail.View
         {            
             InitializeComponent();
             DataContext = new EditRecipiantListViewModel(list);            
-        }        
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

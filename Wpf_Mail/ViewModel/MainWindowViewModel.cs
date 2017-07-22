@@ -86,8 +86,7 @@ namespace Wpf_Mail.ViewModel
                 {
                     Receivers = null;
                 }
-                OnPropertyChanged("CurrentRecipiantList");
-                OnPropertyChanged("Receivers");
+                OnPropertyChanged("CurrentRecipiantList");                
             }
         }        
         public string Receiver
@@ -192,7 +191,8 @@ namespace Wpf_Mail.ViewModel
             if (!string.IsNullOrEmpty(ListName))
             {
                 _client.AddRecipiantList(ListName);
-                _recipiantsLists.Add(new RecipiantList() { Name = ListName });
+                RecipiantsLists = new ObservableCollection<RecipiantList>(Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList()));
+                ListName = null;
 
             }
             else
@@ -222,7 +222,7 @@ namespace Wpf_Mail.ViewModel
         }
         private void GetRecipiantList(int id)
         {
-            _receivers = new ObservableCollection<MailAddress>(Converter.ConvertToReceiversMailList(_client.GetRecipientsList(id).ToList()));            
+            Receivers = new ObservableCollection<MailAddress>(Converter.ConvertToReceiversMailList(_client.GetRecipientsList(id).ToList()));            
         }
         private void SendEmail()
         {
