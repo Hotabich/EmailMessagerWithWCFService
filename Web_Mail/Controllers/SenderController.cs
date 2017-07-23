@@ -6,7 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Web_Mail.Models;
 using Web_Mail.ServiceReference1;
-using Web_Mail.Models;
+using Newtonsoft.Json;
+
 
 namespace Web_Mail.Controllers
 {
@@ -14,7 +15,7 @@ namespace Web_Mail.Controllers
     public class SenderController : ApiController
     {
         #region Fields
-        private ServiceReference1.MainServiceClient _client;
+        private MainServiceClient _client;
         
         #endregion
 
@@ -52,6 +53,14 @@ namespace Web_Mail.Controllers
 
             string[] result = _client.Send(mess);
             return result[0];
+        }
+
+        [Route("api/sender/addRecipiant"), HttpPost]
+        public string AddRecipiant([FromBody]dynamic recipiantName)
+        {
+            Sender.Recipient.Insert(0, recipiantName);                     
+            return JsonConvert.SerializeObject(Sender.Recipient); ;
+                
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Web_Mail.ServiceReference1;
 
 namespace Web_Mail.Models
 {

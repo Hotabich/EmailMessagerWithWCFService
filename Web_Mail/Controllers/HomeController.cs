@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections.ObjectModel;
 using System.Web.Mvc;
 using Web_Mail.Models;
+using Wpf_Mail.Converters;
 using Web_Mail.ServiceReference1;
 
 namespace Web_Mail.Controllers
 {
     public class HomeController : Controller
     {
-        #region Fields        
+        #region Fields 
+        private MainServiceClient _client;
+        private ObservableCollection<RecipiantList> _recipiantsLists;
+        private ObservableCollection<Recipiant> _recipiants;
         #endregion
 
         #region Propertys       
 
-        
+
         #endregion
 
         #region Сonstructor
@@ -25,10 +30,13 @@ namespace Web_Mail.Controllers
             {
                  Redirect("/Credential/Credential");
             }
-               
-        }
+            _client = new MainServiceClient("BasicHttpBinding_IMainService", "http://localhost:8080/MainService");
 
-#endregion
+            _recipiantsLists = new ObservableCollection<RecipiantList>(Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList()));
+
+        }
+        #endregion
+
         public ActionResult Credential(string Email, string Password)
         {
             if (!(String.IsNullOrEmpty(Email)) && !(String.IsNullOrEmpty(Password)))
@@ -36,6 +44,7 @@ namespace Web_Mail.Controllers
                 Sender.Email = Email;
                 Sender.Password = Password;
                 ViewBag.Recipients = Sender.Recipient;
+                ViewBag.RecipiantsList = _recipiantsLists;
                 return View("Index");
             }
             else
@@ -48,6 +57,7 @@ namespace Web_Mail.Controllers
         public ActionResult Index()
         {
             ViewBag.Recipients = Sender.Recipient;
+            ViewBag.RecipiantsList = _recipiantsLists;
             return View();
         }
 
@@ -73,6 +83,20 @@ namespace Web_Mail.Controllers
                 ViewData["EmptyRecipient"] = "Recipient's name can not be empty";
             }
             ViewBag.Recipients = Sender.Recipient;
+            return View("Index");
+        }
+
+        public ActionResult AddRecipiantList(string recipiantList)
+        {
+            _client.AddRecipiantList(recipiantList);
+            ViewBag.RecipiantsList = new ObservableCollection<RecipiantList>(Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList()));
+            return View("Index");
+        }
+
+        public ActionResult DeleteRecipiantList(int idList)
+        {
+            _client.DeleteRecipiantsList(idList);
+            ViewBag.RecipiantsList = new ObservableCollection<RecipiantList>(Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList()));
             return View("Index");
         }
     }
