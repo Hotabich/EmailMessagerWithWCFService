@@ -63,6 +63,13 @@ namespace Web_Mail.Controllers
                 
         }
 
+        [Route("api/sender/getalllist"), HttpGet]
+        public string GetAllList()
+        {
+           return JsonConvert.SerializeObject(_client.GetAllRecipiantsList());
+
+        }
+
 
 
     }
