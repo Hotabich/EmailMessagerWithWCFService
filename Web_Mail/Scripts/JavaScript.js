@@ -13,7 +13,11 @@ deleteRecipiant.addEventListener("click", DeleteRecipiant);
 //for add option to select element
 var recipiantsSelect = document.getElementById("selectRecipiants");
 
-document.readyState(GetAllList());
+//for add option to select recipianList
+var selectRecipiantsList = document.getElementById("selectRecipiantsList");
+selectRecipiantsList.addEventListener("change", GetList);
+
+GetAllList();
 
 
 
@@ -51,16 +55,56 @@ function AddRecipiant() {
 }
 
 function DeleteRecipiant() {
-    recipiantsSelect.remove(recipiantsSelect.selectedIndex);
+    var index = recipiantsSelect.selectedIndex;
+    var selectRecipiant = recipiantsSelect.options[index].value;
+    recipiantsSelect.remove(index);
+    $.ajax({
+        url: "/api/sender/deleteRecipiant",
+        type: "POST",
+        data: JSON.stringify(selectRecipiant),
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            var recipiant = new Array();
+            recipiantsSelect.innerHTML = "";
+            recipiant = JSON.parse(data);
+            for (var i = 0; i < recipiant.length; i++) {
+                recipiantsSelect.add(new Option(recipiant[i], recipiant[i]));
+            }
+        }
+    });
+
 }
 
 function GetAllList() {   
     $.ajax({
         url: "/api/sender/getalllist",
         type: "Get",        
+        success: function (data) {
+            var recipiantList = new Array();
+            selectRecipiantsList.innerHTML = "";
+            recipiantList = JSON.parse(data);
+            for (var i = 0; i < recipiantList.length; i++) {
+                selectRecipiantsList.add(new Option(recipiantList[i].Name, recipiantList[i].Id));
+            }
+        }
+    });
+}
+
+function GetList() {
+    var selectOption = selectRecipiantsList.options[recipiantsSelect.selectedIndex];
+    var recipiantlistId = selectOption.value;
+    $.ajax({
+        url: "/api/sender/getRecipiantList",
+        type: "Post",
+        data: JSON.stringify(recipiantlistId),
         contentType: "application/json;charset=utf-8",
-        success: function () {
-            alert(data);
+        success: function (data) {
+            var recipiant = new Array();
+            recipiantsSelect.innerHTML = "";
+            recipiantList = JSON.parse(data);
+            for (var i = 0; i < recipiant.length; i++) {
+                recipiantsSelect.add(new Option(recipiant[i], recipiant[i]));
+            }
         }
     });
 }

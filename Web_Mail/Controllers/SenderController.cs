@@ -7,6 +7,7 @@ using System.Web.Http;
 using Web_Mail.Models;
 using Web_Mail.ServiceReference1;
 using Newtonsoft.Json;
+using Wpf_Mail.Converters;
 
 
 namespace Web_Mail.Controllers
@@ -63,10 +64,26 @@ namespace Web_Mail.Controllers
                 
         }
 
+        [Route("api/sender/deleteRecipiant"), HttpPost]
+        public string DeleteRecipiant([FromBody]dynamic selectRecipiant)
+        {
+            Sender.Recipient.Remove(selectRecipiant);
+            return JsonConvert.SerializeObject(Sender.Recipient); ;
+
+        }
+
         [Route("api/sender/getalllist"), HttpGet]
         public string GetAllList()
         {
            return JsonConvert.SerializeObject(_client.GetAllRecipiantsList());
+
+        }
+
+        [Route("api/sender/getRecipiantList"), HttpPost]
+        public string GetRecipiantList([FromBody]dynamic recipiantlistId)
+        {
+            Sender.Recipient = Converter.ConvertToReceiversMailList(_client.GetRecipientsList(recipiantlistId));
+            return JsonConvert.SerializeObject(Sender.Recipient); ;
 
         }
 
