@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net.Mail;
 using Web_Mail.ServiceReference1;
 
 namespace Web_Mail.Models
@@ -12,7 +13,7 @@ namespace Web_Mail.Models
 
         private static string email;
         private static string password;
-        private static List<string> recipient = new List<string>();
+        private static List<MailAddress> recipient = new List<MailAddress>();
         
         public static string Email
         {
@@ -26,7 +27,7 @@ namespace Web_Mail.Models
             set { password = value; }
         }
 
-        public static List<string> Recipient
+        public static List<MailAddress> Recipient
         {
             get { return recipient; }
             set { recipient = value; }

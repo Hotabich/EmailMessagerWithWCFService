@@ -47,7 +47,7 @@ function AddRecipiant() {
             recipiantsSelect.innerHTML = "";
             recipiant = JSON.parse(data);
             for (var i = 0; i < recipiant.length; i++) {
-                recipiantsSelect.add(new Option(recipiant[i], recipiant[i]));
+                recipiantsSelect.add(new Option(recipiant[i].Address, recipiant[i].Address));
             }
             recipiantName.value = "";
         }
@@ -68,7 +68,7 @@ function DeleteRecipiant() {
             recipiantsSelect.innerHTML = "";
             recipiant = JSON.parse(data);
             for (var i = 0; i < recipiant.length; i++) {
-                recipiantsSelect.add(new Option(recipiant[i], recipiant[i]));
+                recipiantsSelect.add(new Option(recipiant[i].Address, recipiant[i].Address));
             }
         }
     });
@@ -99,11 +99,10 @@ function GetList() {
         data: JSON.stringify(recipiantlistId),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            var recipiant = new Array();
-            recipiantsSelect.innerHTML = "";
-            recipiantList = JSON.parse(data);
+            var recipiant = new Array();            
+            recipiant = JSON.parse(data);
             for (var i = 0; i < recipiant.length; i++) {
-                recipiantsSelect.add(new Option(recipiant[i], recipiant[i]));
+                recipiantsSelect.add(new Option(recipiant[i].Address, recipiant[i].Address));
             }
         }
     });

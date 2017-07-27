@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Web_Mail.Models;
+using System.Net.Mail;
 using Web_Mail.ServiceReference1;
 using Newtonsoft.Json;
 using Wpf_Mail.Converters;
@@ -39,9 +40,9 @@ namespace Web_Mail.Controllers
             {
                 mess.Receivers = new string[Sender.Recipient.Count];
                 int _idRecipient = 0;
-                foreach (string item in Sender.Recipient)
+                foreach (var item in Sender.Recipient)
                 {
-                    mess.Receivers[_idRecipient] = item;
+                    mess.Receivers[_idRecipient] = item.ToString();
                 }
             }
             else
@@ -59,7 +60,7 @@ namespace Web_Mail.Controllers
         [Route("api/sender/addRecipiant"), HttpPost]
         public string AddRecipiant([FromBody]dynamic recipiantName)
         {
-            Sender.Recipient.Insert(0, recipiantName);                     
+            Sender.Recipient.Insert(0, new MailAddress(recipiantName));                     
             return JsonConvert.SerializeObject(Sender.Recipient); ;
                 
         }
@@ -67,7 +68,7 @@ namespace Web_Mail.Controllers
         [Route("api/sender/deleteRecipiant"), HttpPost]
         public string DeleteRecipiant([FromBody]dynamic selectRecipiant)
         {
-            Sender.Recipient.Remove(selectRecipiant);
+            Sender.Recipient.Remove(new MailAddress(selectRecipiant));
             return JsonConvert.SerializeObject(Sender.Recipient); ;
 
         }
@@ -82,10 +83,9 @@ namespace Web_Mail.Controllers
         [Route("api/sender/getRecipiantList"), HttpPost]
         public string GetRecipiantList([FromBody]dynamic recipiantlistId)
         {
-            int id= Convert.ToInt32(recipiantlistId);
-            var list = _client.GetRecipientsList(id).ToList();
-            //Sender.Recipient = Converter.ConvertToReceiversMailList(list);
-            return JsonConvert.SerializeObject(Sender.Recipient); ;
+            int id = Convert.ToInt32(recipiantlistId);
+            Sender.Recipient = Converter.ConvertToReceiversMailList(_client.GetRecipientsList(id).ToList());
+            return JsonConvert.SerializeObject(Sender.Recipient); 
 
         }
 
