@@ -91,7 +91,7 @@ function GetAllList() {
 }
 
 function GetList() {
-    var selectOption = selectRecipiantsList.options[recipiantsSelect.selectedIndex];
+    var selectOption = selectRecipiantsList.options[selectRecipiantsList.selectedIndex];
     var recipiantlistId = selectOption.value;
     $.ajax({
         url: "/api/sender/getRecipiantList",

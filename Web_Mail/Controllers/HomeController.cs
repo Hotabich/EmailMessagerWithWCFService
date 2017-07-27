@@ -14,8 +14,7 @@ namespace Web_Mail.Controllers
     {
         #region Fields 
         private MainServiceClient _client;
-        private ObservableCollection<RecipiantList> _recipiantsLists;
-        private ObservableCollection<Recipiant> _recipiants;
+        private ObservableCollection<RecipiantList> _recipiantsLists;        
         #endregion
 
         #region Propertys       
