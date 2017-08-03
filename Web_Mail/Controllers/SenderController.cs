@@ -65,11 +65,11 @@ namespace Web_Mail.Controllers
                 
         }
 
-        [Route("api/sender/addRecipiantForList"), HttpPost]
-        public string AddRecipiantForList([FromBody]dynamic id, dynamic name)
+        [Route("api/sender/addRecipiantForList"), HttpPost]       
+        public string AddRecipiantForList([FromBody]dynamic newRecipiant)
         {
-            _client.AddRecipiant(id, name.ToString());            
-            return JsonConvert.SerializeObject(_client.GetRecipientsList(1).ToList()); 
+            _client.AddRecipiant(Convert.ToInt32(newRecipiant.Id), newRecipiant.Name.ToString());            
+            return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(newRecipiant.Id))); 
 
         }
 
@@ -82,10 +82,10 @@ namespace Web_Mail.Controllers
         }
 
         [Route("api/sender/deleteRecipiantFromList"), HttpPost]
-        public string DeleteRecipiantFromList([FromBody]dynamic idRecipiant)
+        public string DeleteRecipiantFromList([FromBody]dynamic deleteRecipiant)
         {
-            _client.DeleteRecipiant(Convert.ToInt32(idRecipiant));
-            return JsonConvert.SerializeObject(_client.GetRecipientsList(1).ToList());
+            _client.DeleteRecipiant(Convert.ToInt32(deleteRecipiant.Id));
+            return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(deleteRecipiant.IdList)));
 
         }
 
@@ -105,11 +105,16 @@ namespace Web_Mail.Controllers
 
         [Route("api/sender/getRecipiantList"), HttpPost]
         public string GetRecipiantList([FromBody]dynamic recipiantlistId)
-        {
-            int id = Convert.ToInt32(recipiantlistId);
-            Sender.Recipient = Converter.ConvertToReceiversMailList(_client.GetRecipientsList(id).ToList());
+        {            
+            Sender.Recipient = Converter.ConvertToReceiversMailList(_client.GetRecipientsList(Convert.ToInt32(recipiantlistId).ToList()));
             return JsonConvert.SerializeObject(Sender.Recipient); 
 
+        }
+
+        [Route("api/sender/getRecipiantListforEdit"), HttpPost]
+        public string GetRecipiantListForEdit([FromBody]dynamic recipiantlistId)
+        {                       
+            return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(recipiantlistId)));
         }
 
         [Route("api/sender/addList"), HttpPost]

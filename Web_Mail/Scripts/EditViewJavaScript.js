@@ -9,21 +9,27 @@ deleteRecipiant.addEventListener("click", DeleteRecipiant);
 //for add option to select element
 var recipiantsSelect = document.getElementById("selectRecipiants");
 
-var listId = document.getElementById("listId");
+var listId = document.getElementById("listName");
+
+var okButton = document.getElementById("okButton");
+okButton.addEventListener("click", OpenMainWindow);
+
+
+
+GetList();
 
 
 
 
 
-
-function AddRecipiant() {
-    var recipiantName = document.getElementById("recipiantName");
+function AddRecipiant() {    
     var name = recipiantName.value;
     var id = listId.attributes.value.nodeValue;
+    var newRecipiant = { Id: id, Name: name };
     $.ajax({
         url: "/api/sender/addRecipiantForList",
         type: "POST",
-        data: JSON.stringify({ id, name }),
+        data: JSON.stringify(newRecipiant),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             var recipiant = new Array();
@@ -40,11 +46,13 @@ function AddRecipiant() {
 function DeleteRecipiant() {
     var index = recipiantsSelect.selectedIndex;
     var selectRecipiant = recipiantsSelect.options[index].value;
+    var id = listId.attributes.value.nodeValue;
+    var deleteRecipiant = { Id: selectRecipiant, IdList: id };
     recipiantsSelect.remove(index);
     $.ajax({
         url: "/api/sender/deleteRecipiantFromList",
         type: "POST",
-        data: JSON.stringify(selectRecipiant),
+        data: JSON.stringify(deleteRecipiant),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             var recipiant = new Array(); 
@@ -55,4 +63,27 @@ function DeleteRecipiant() {
             }
         }
     });
+}
+
+function GetList() {
+    var id = listId.attributes.value.nodeValue;
+    $.ajax({
+        url: "/api/sender/getRecipiantListforEdit",
+        type: "Post",
+        data: JSON.stringify(id),
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            var recipiantList = new Array();
+            recipiantsSelect.innerHTML = "";
+            recipiantList = JSON.parse(data);
+            for (var i = 0; i < recipiantList.length; i++) {
+                recipiantsSelect.add(new Option(recipiantList[i].Mail, recipiantList[i].Id));
+            }
+        }
+    });
+}
+
+function OpenMainWindow() {
+
+    location.href = "../../Home/Index";
 }

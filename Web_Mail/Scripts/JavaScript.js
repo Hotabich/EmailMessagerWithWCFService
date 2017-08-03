@@ -155,6 +155,10 @@ function AddList() {
 }
 
 function OpenEditWindow() {
+    var index = selectRecipiantsList.selectedIndex;
+    var selectRecipiantListId = selectRecipiantsList.options[index].value;
+    var selectRecipiantListName = selectRecipiantsList.options[index].text;
 
-    location.href = "Home/EditList/?id=2&name=myName";
+
+    location.href = "Home/EditList/?id=" + selectRecipiantListId + "&name=" + selectRecipiantListName+"";
 }
