@@ -1,21 +1,32 @@
-﻿//add Event listener for send button
+﻿
 var sendButton = document.getElementById("sendMessage");
 sendButton.addEventListener("click", Send);
 
-//add Event Listener for addRecipiant button
+
 var addRecipiantBtn = document.getElementById("addRecipiant");
 addRecipiantBtn.addEventListener("click", AddRecipiant);
 
-//add Event Listener for deleteRecipiant button
+
 var deleteRecipiant = document.getElementById("deleteRecipiant");
 deleteRecipiant.addEventListener("click", DeleteRecipiant);
 
-//for add option to select element
+var editButton = document.getElementById("editButton");
+editButton.addEventListener("click", OpenEditWindow);
+
+
 var recipiantsSelect = document.getElementById("selectRecipiants");
 
-//for add option to select recipianList
+
 var selectRecipiantsList = document.getElementById("selectRecipiantsList");
 selectRecipiantsList.addEventListener("change", GetList);
+
+var addListbutton = document.getElementById("addList");
+addListbutton.addEventListener("click", AddList);
+
+var deleteRecipiantList = document.getElementById("deleteRecipiantList");
+deleteRecipiantList.addEventListener("click", DeleteList);
+
+
 
 GetAllList();
 
@@ -75,6 +86,21 @@ function DeleteRecipiant() {
 
 }
 
+function DeleteList() {
+    var index = selectRecipiantsList.selectedIndex;
+    var selectRecipiantList = selectRecipiantsList.options[index].value;
+    selectRecipiantsList.remove(index);
+    $.ajax({
+        url: "/api/sender/deleteRecipiantList",
+        type: "POST",
+        data: JSON.stringify(selectRecipiantList),
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            recipiantsSelect.innerHTML = "";
+        }
+    });
+}
+
 function GetAllList() {   
     $.ajax({
         url: "/api/sender/getalllist",
@@ -99,11 +125,36 @@ function GetList() {
         data: JSON.stringify(recipiantlistId),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            var recipiant = new Array();            
+            var recipiant = new Array(); 
+            recipiantsSelect.innerHTML = "";
             recipiant = JSON.parse(data);
             for (var i = 0; i < recipiant.length; i++) {
                 recipiantsSelect.add(new Option(recipiant[i].Address, recipiant[i].Address));
             }
         }
     });
+}
+
+function AddList() {
+    var listName = document.getElementById("listName").value;
+    $.ajax({
+        url: "/api/sender/addList",
+        type: "POST",
+        data: JSON.stringify(listName),
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            var recipiantList = new Array();
+            selectRecipiantsList.innerHTML = "";
+            recipiantList = JSON.parse(data);
+            for (var i = 0; i < recipiantList.length; i++) {
+                selectRecipiantsList.add(new Option(recipiantList[i].Name, recipiantList[i].Id));
+            }
+            document.getElementById("listName").value = "";
+        }
+    });
+}
+
+function OpenEditWindow() {
+
+    location.href = "Home/EditList/?id=2&name=myName";
 }

@@ -60,36 +60,13 @@ namespace Web_Mail.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public ActionResult DeleteRecipient(string recipientname)
-        //{
-            
-        //        Sender.Recipient.Remove(recipientname);
-        //        ViewBag.Recipients = Sender.Recipient;            
-        //        return View("Index");
-            
-        //}
 
-        //public ActionResult AddRecipient(string recipient)
-        //{           
 
-        //    if (!String.IsNullOrEmpty(recipient))
-        //    {
-        //        Sender.Recipient.Insert(0, recipient);                
-        //    }
-        //    else
-        //    {
-        //        ViewData["EmptyRecipient"] = "Recipient's name can not be empty";
-        //    }
-        //    ViewBag.Recipients = Sender.Recipient;
-        //    return View("Index");
-        //}
-
-        public ActionResult AddRecipiantList(string recipiantList)
+        public ActionResult EditList(int id, string name)
         {
-            _client.AddRecipiantList(recipiantList);
-            ViewBag.RecipiantsList = new ObservableCollection<RecipiantList>(Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList()));
-            return View("Index");
+            ViewBag.Id = id;
+            ViewBag.Name = name;
+            return View("EditRecipiantList");
         }
 
         public ActionResult DeleteRecipiantList(int idList)

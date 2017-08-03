@@ -1,0 +1,42 @@
+﻿<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "EditRecipiantList";
+}
+
+
+<div class="container-fluid centerAlign">
+    <div class=" editConteinerBorder row col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" >
+        <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h3>EditRecipiantList</h3>
+        </div>
+        <div class="subjectRow col-xs-9 col-sm-9 col-md-9 col-lg-9">            
+            <h4> <label value="@ViewBag.Id" id="listId">List Name: @ViewBag.Name</label></h4>
+        </div>        
+            <div class="row">
+                <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    @Html.TextBox("NameRecipiant", null, new { @class = "inputFull", @type = "email", @id = "recipiantName", @placeholder = "Enter name of List" })
+                </div>
+                <div class="rightAlign col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button class="editButton" id="addRecipiant">Add</button>
+                </div>
+            </div>
+
+            <div class="row nextRow">
+                <div class=" col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <select id="selectRecipiants" size="9" class="inputFull"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="rightAlign col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-6 col-sm-offset-6 col-md-offset-6 col-lg-offset-6" >
+                    <button class="editButton" id="deleteRecipiant">Delete</button>
+                </div>
+            </div>             
+    </div>
+    <div class="row">
+        <button class="okButton col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5" id="okButton">OK</button>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/EditViewJavaScript.js"></script>

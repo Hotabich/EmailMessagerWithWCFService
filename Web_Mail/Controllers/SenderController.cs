@@ -65,11 +65,34 @@ namespace Web_Mail.Controllers
                 
         }
 
+        [Route("api/sender/addRecipiantForList"), HttpPost]
+        public string AddRecipiantForList([FromBody]dynamic id, dynamic name)
+        {
+            _client.AddRecipiant(id, name.ToString());            
+            return JsonConvert.SerializeObject(_client.GetRecipientsList(1).ToList()); 
+
+        }
+
         [Route("api/sender/deleteRecipiant"), HttpPost]
         public string DeleteRecipiant([FromBody]dynamic selectRecipiant)
         {
             Sender.Recipient.Remove(new MailAddress(selectRecipiant));
             return JsonConvert.SerializeObject(Sender.Recipient); ;
+
+        }
+
+        [Route("api/sender/deleteRecipiantFromList"), HttpPost]
+        public string DeleteRecipiantFromList([FromBody]dynamic idRecipiant)
+        {
+            _client.DeleteRecipiant(Convert.ToInt32(idRecipiant));
+            return JsonConvert.SerializeObject(_client.GetRecipientsList(1).ToList());
+
+        }
+
+        [Route("api/sender/deleteRecipiantList"), HttpPost]
+        public void DeleteRecipiantList([FromBody]dynamic selectRecipiantList)
+        {
+            _client.DeleteRecipiantsList(Convert.ToInt32(selectRecipiantList));           
 
         }
 
@@ -89,7 +112,14 @@ namespace Web_Mail.Controllers
 
         }
 
+        [Route("api/sender/addList"), HttpPost]
+        public string AddList([FromBody]dynamic listName)
+        {
+            _client.AddRecipiantList(listName.ToString());
+            List<RecipiantList> recipiantList =Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList());
+            return JsonConvert.SerializeObject(recipiantList);
 
+        }
 
     }
 }

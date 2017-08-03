@@ -30,7 +30,7 @@
             </div>
             
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                @Html.TextBox("ListName", null, new { @class = "inputFull", @id = "listName", @placeholder = "Enter name of list" });
+               @Html.TextBox("ListName", null, new { @class = "inputFull", @id = "listName", @placeholder = "Enter name of list" });
             </div>  
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
              <button  id="addList">Add</button> 
@@ -68,12 +68,13 @@
                 <button id="deleteRecipiant">Delete</button>
             </div>
             <div class=" leftAlign col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-                <button id="editRecipiantList">Edit</button>@*in process*@
+                @*@Html.ActionLink("Edit", "EditList", new { }, new { id="editButton"});*@
+                <button id="editButton">Edit</button>
             </div>
             <div class=" rightAlign col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                 <button id="deleteRecipiantList">Delete</button>@*in process*@
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                 <button class="sendButton" id="sendMessage"> Send</button>
             </div>           
         </div>

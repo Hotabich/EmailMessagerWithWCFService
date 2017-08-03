@@ -81,7 +81,26 @@
 .sendButton {
     width:100%;
     background-color:dodgerblue;
-    border: 1px solid blue;    
+    border: 1px solid blue;  
+    
+}
+.subjectRow{
+    margin-bottom: 25px;
+    border-bottom: 1px solid black;
+}
+.editButton{
+    margin-right: 5px;
+    width: 60px;
+}
+.editConteinerBorder{
+    border: 2px double black;
+    border-radius: 5px;
+    margin-top:20px;   
+    padding:10px;
+}
+.okButton{
+    padding:5px;
+    margin-top:10px;
 }
 
 html {

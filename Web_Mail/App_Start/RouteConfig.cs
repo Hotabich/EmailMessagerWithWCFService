@@ -14,15 +14,15 @@ namespace Web_Mail
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //routes.IgnoreRoute("Home/Index");
 
-            //routes.MapRoute(
-            //    name: "Default",
-            //    url: "{controller}/{action}/{id}",
-            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Credential", action = "Credential", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Credential", action = "Credential", id = UrlParameter.Optional }
             );
         }
     }
