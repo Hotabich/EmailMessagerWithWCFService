@@ -13,9 +13,13 @@ deleteRecipiant.addEventListener("click", DeleteRecipiant);
 var editButton = document.getElementById("editButton");
 editButton.addEventListener("click", OpenEditWindow);
 
+var recipiantName = document.getElementById("recipiantName");
+recipiantName.addEventListener("change", NormalBorder);
 
 var recipiantsSelect = document.getElementById("selectRecipiants");
 
+var list = document.getElementById("listName");
+list.addEventListener("change", NormalBorder);
 
 var selectRecipiantsList = document.getElementById("selectRecipiantsList");
 selectRecipiantsList.addEventListener("change", GetList);
@@ -32,6 +36,23 @@ GetAllList();
 
 
 
+
+
+function validateEmail(emailField) {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if (reg.test(emailField.value) == false) {        
+        return false;
+    }
+
+    return true;
+
+}
+
+function NormalBorder(event) {
+    event.target.style.borderColor = "black";
+}
+
 function Send() {
         var message = new Array($("#subject").val(), $("#message").val());
         $.ajax({
@@ -45,9 +66,10 @@ function Send() {
         });
 }
 
-function AddRecipiant() {
-    var recipiantName = document.getElementById("recipiantName");
+function AddRecipiant() {   
     var name = recipiantName.value;
+
+    if (validateEmail(name)) {    
     $.ajax({
         url: "/api/sender/addRecipiant",
         type: "POST",
@@ -63,6 +85,11 @@ function AddRecipiant() {
             recipiantName.value = "";
         }
     });
+    }
+    else {
+        recipiantName.style.borderColor = "red";
+        recipiantName.value = "";
+    }
 }
 
 function DeleteRecipiant() {
@@ -136,7 +163,8 @@ function GetList() {
 }
 
 function AddList() {
-    var listName = document.getElementById("listName").value;
+    var listName = list.value;
+    if (validateEmail(listName)) {   
     $.ajax({
         url: "/api/sender/addList",
         type: "POST",
@@ -151,7 +179,12 @@ function AddList() {
             }
             document.getElementById("listName").value = "";
         }
-    });
+        });
+    }
+    else {
+        list.style.borderColor = "red";
+        list.value = "";
+    }
 }
 
 function OpenEditWindow() {

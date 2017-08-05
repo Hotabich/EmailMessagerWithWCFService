@@ -147,6 +147,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\edit.jpg" />
     <Content Include="Content\Image\email.jpg" />
     <Content Include="Content\Image\information.jpg" />
     <Content Include="Content\Image\password.jpg" />

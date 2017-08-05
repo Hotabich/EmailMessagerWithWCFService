@@ -105,9 +105,15 @@ namespace Web_Mail.Controllers
 
         [Route("api/sender/getRecipiantList"), HttpPost]
         public string GetRecipiantList([FromBody]dynamic recipiantlistId)
-        {            
-            Sender.Recipient = Converter.ConvertToReceiversMailList(_client.GetRecipientsList(Convert.ToInt32(recipiantlistId).ToList()));
-            return JsonConvert.SerializeObject(Sender.Recipient); 
+        {
+            Sender.Recipient.Clear();
+            Recipiant[] _recipiantList = _client.GetRecipientsList(Convert.ToInt32(recipiantlistId));
+            if (_recipiantList.Length>0)
+            {
+                Sender.Recipient = Converter.ConvertToReceiversMailList(_recipiantList.ToList());                
+            }
+
+            return JsonConvert.SerializeObject(Sender.Recipient);
 
         }
 

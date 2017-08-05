@@ -11,6 +11,9 @@ var recipiantsSelect = document.getElementById("selectRecipiants");
 
 var listId = document.getElementById("listName");
 
+var recipiantName = document.getElementById("recipiantName");
+recipiantName.addEventListener("change", NormalBorder);
+
 var okButton = document.getElementById("okButton");
 okButton.addEventListener("click", OpenMainWindow);
 
@@ -20,11 +23,25 @@ GetList();
 
 
 
+function validateEmail(emailField) {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
+    if (reg.test(emailField.value) == false) {
+        return false;
+    }
 
-function AddRecipiant() {    
+    return true;
+
+}
+
+function NormalBorder(event) {
+    event.target.style.borderColor = "black";    
+}
+
+function AddRecipiant() {     
     var name = recipiantName.value;
     var id = listId.attributes.value.nodeValue;
+    if (validateEmail(name)) {    
     var newRecipiant = { Id: id, Name: name };
     $.ajax({
         url: "/api/sender/addRecipiantForList",
@@ -41,6 +58,11 @@ function AddRecipiant() {
             recipiantName.value = "";
         }
     });
+    }
+    else {
+        recipiantName.style.borderColor = "red";
+        recipiantName.value = "";
+    }
 }
 
 function DeleteRecipiant() {

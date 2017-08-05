@@ -8,6 +8,8 @@
     height: 350px;
 }
 
+
+
 .backgroundDiv {
     background-image: url('../../Content/Image/password.jpg');
     width: 400px;
@@ -92,11 +94,12 @@
     margin-right: 5px;
     width: 60px;
 }
-.editConteinerBorder{
+.editConteinerBorder {
     border: 2px double black;
     border-radius: 5px;
-    margin-top:20px;   
-    padding:10px;
+    margin-top: 20px;
+    padding: 10px;
+    background-image: url('Image/edit.jpg');    
 }
 .okButton{
     padding:5px;
