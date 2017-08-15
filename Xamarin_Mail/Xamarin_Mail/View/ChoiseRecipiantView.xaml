@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin_Mail.View.ChoiseRecipiantView"
+             Title="{Binding Title, Mode=OneWay}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="recipiantLabel" TargetType="Label">
+                <Setter Property="Text" Value="Choise list or go next"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="listItemLabel"  TargetType="Label">
+                <Setter Property="Margin" Value="15,10,10,10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Style="{StaticResource recipiantLabel}" FontSize="Medium" ></Label>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding RecipiantLists, Mode=TwoWay}" SelectedItem="{Binding CurrentList}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Style="{StaticResource listItemLabel}" Text="{Binding Name}"></Label>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button  Text="Edit" BorderColor="Black"></Button>
+                <Button  Text="Choise"></Button>
+                <Button  Text="Next"></Button>
+            </StackLayout>
+        </StackLayout>        
+    </ContentPage.Content>
+</ContentPage>

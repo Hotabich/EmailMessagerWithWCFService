@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin_Mail.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="OkButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Text" Value="Ok"/>
+                <Setter Property="BackgroundColor" Value="LightBlue"/>
+                <Setter Property="BorderWidth" Value="20"/>
+                <Setter Property="BorderRadius" Value="2"/>
+            </Style>
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

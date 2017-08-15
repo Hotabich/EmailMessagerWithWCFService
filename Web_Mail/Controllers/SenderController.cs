@@ -43,6 +43,7 @@ namespace Web_Mail.Controllers
                 foreach (var item in Sender.Recipient)
                 {
                     mess.Receivers[_idRecipient] = item.ToString();
+                    _idRecipient++;
                 }
             }
             else
@@ -54,21 +55,32 @@ namespace Web_Mail.Controllers
             mess.TextMessage = message[1];
 
             string[] result = _client.Send(mess);
-            return result[0];
+            string resultString=null;
+            foreach (var item in result)
+            {
+                resultString+= item+"; ";
+            }
+            return resultString;
         }
 
         [Route("api/sender/addRecipiant"), HttpPost]
         public string AddRecipiant([FromBody]dynamic recipiantName)
         {
-            Sender.Recipient.Insert(0, new MailAddress(recipiantName));                     
-            return JsonConvert.SerializeObject(Sender.Recipient); ;
+            if (!String.IsNullOrEmpty(recipiantName.ToString()))
+            {
+                Sender.Recipient.Insert(0, new MailAddress(recipiantName));
+            }
+            return JsonConvert.SerializeObject(Sender.Recipient); 
                 
         }
 
         [Route("api/sender/addRecipiantForList"), HttpPost]       
         public string AddRecipiantForList([FromBody]dynamic newRecipiant)
         {
-            _client.AddRecipiant(Convert.ToInt32(newRecipiant.Id), newRecipiant.Name.ToString());            
+            if (!String.IsNullOrEmpty(newRecipiant.Name.ToString()))
+            {
+                _client.AddRecipiant(Convert.ToInt32(newRecipiant.Id), newRecipiant.Name.ToString());
+            }
             return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(newRecipiant.Id))); 
 
         }
@@ -76,7 +88,10 @@ namespace Web_Mail.Controllers
         [Route("api/sender/deleteRecipiant"), HttpPost]
         public string DeleteRecipiant([FromBody]dynamic selectRecipiant)
         {
-            Sender.Recipient.Remove(new MailAddress(selectRecipiant));
+            if (!String.IsNullOrEmpty(selectRecipiant.ToString()))
+            {
+                Sender.Recipient.Remove(new MailAddress(selectRecipiant));
+            }
             return JsonConvert.SerializeObject(Sender.Recipient); ;
 
         }
@@ -84,7 +99,10 @@ namespace Web_Mail.Controllers
         [Route("api/sender/deleteRecipiantFromList"), HttpPost]
         public string DeleteRecipiantFromList([FromBody]dynamic deleteRecipiant)
         {
-            _client.DeleteRecipiant(Convert.ToInt32(deleteRecipiant.Id));
+            if (!String.IsNullOrEmpty(deleteRecipiant.ToString()))
+            {
+                _client.DeleteRecipiant(Convert.ToInt32(deleteRecipiant.Id));
+            }
             return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(deleteRecipiant.IdList)));
 
         }
@@ -92,7 +110,10 @@ namespace Web_Mail.Controllers
         [Route("api/sender/deleteRecipiantList"), HttpPost]
         public void DeleteRecipiantList([FromBody]dynamic selectRecipiantList)
         {
-            _client.DeleteRecipiantsList(Convert.ToInt32(selectRecipiantList));           
+            if (!String.IsNullOrEmpty(selectRecipiantList.ToString()))
+            {
+                _client.DeleteRecipiantsList(Convert.ToInt32(selectRecipiantList));
+            }
 
         }
 
@@ -106,29 +127,40 @@ namespace Web_Mail.Controllers
         [Route("api/sender/getRecipiantList"), HttpPost]
         public string GetRecipiantList([FromBody]dynamic recipiantlistId)
         {
-            Sender.Recipient.Clear();
-            Recipiant[] _recipiantList = _client.GetRecipientsList(Convert.ToInt32(recipiantlistId));
-            if (_recipiantList.Length>0)
+            if ((Convert.ToInt32(recipiantlistId))!=null)
             {
-                Sender.Recipient = Converter.ConvertToReceiversMailList(_recipiantList.ToList());                
+                Sender.Recipient.Clear();
+                Recipiant[] _recipiantList = _client.GetRecipientsList(Convert.ToInt32(recipiantlistId));
+                if (_recipiantList.Length > 0)
+                {
+                    Sender.Recipient = Converter.ConvertToReceiversMailList(_recipiantList.ToList());
+                }
             }
-
             return JsonConvert.SerializeObject(Sender.Recipient);
 
         }
 
         [Route("api/sender/getRecipiantListforEdit"), HttpPost]
         public string GetRecipiantListForEdit([FromBody]dynamic recipiantlistId)
-        {                       
-            return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(recipiantlistId)));
+        {
+            if ((Convert.ToInt32(recipiantlistId)) != null)
+            {
+                return JsonConvert.SerializeObject(_client.GetRecipientsList(Convert.ToInt32(recipiantlistId)));
+            }
+            else { return ""; }
         }
 
         [Route("api/sender/addList"), HttpPost]
         public string AddList([FromBody]dynamic listName)
         {
-            _client.AddRecipiantList(listName.ToString());
-            List<RecipiantList> recipiantList =Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList());
-            return JsonConvert.SerializeObject(recipiantList);
+
+            if (!String.IsNullOrEmpty(listName.ToString()))
+            {
+                _client.AddRecipiantList(listName.ToString());
+                List<RecipiantList> recipiantList = Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList());
+                return JsonConvert.SerializeObject(recipiantList);
+            }
+            else { return ""; }
 
         }
 

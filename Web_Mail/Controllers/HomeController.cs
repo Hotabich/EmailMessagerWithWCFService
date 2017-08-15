@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Collections.ObjectModel;
 using System.Web.Mvc;
 using Web_Mail.Models;
@@ -69,11 +66,6 @@ namespace Web_Mail.Controllers
             return View("EditRecipiantList");
         }
 
-        public ActionResult DeleteRecipiantList(int idList)
-        {
-            _client.DeleteRecipiantsList(idList);
-            ViewBag.RecipiantsList = new ObservableCollection<RecipiantList>(Converter.ConvertToRecipiantList(_client.GetAllRecipiantsList()));
-            return View("Index");
-        }
+       
     }
 }

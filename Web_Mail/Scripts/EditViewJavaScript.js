@@ -24,22 +24,16 @@ GetList();
 
 
 function validateEmail(emailField) {
-    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
-    if (reg.test(emailField.value) == false) {
-        return false;
-    }
-
-    return true;
-
-}
+    var reg = new RegExp(/^\w+@\w+\.\w{2,4}$/i);    
+    return reg.test(emailField);
+   }
 
 function NormalBorder(event) {
     event.target.style.borderColor = "black";    
 }
 
 function AddRecipiant() {     
-    var name = recipiantName.value;
+    var name = new String(recipiantName.value);
     var id = listId.attributes.value.nodeValue;
     if (validateEmail(name)) {    
     var newRecipiant = { Id: id, Name: name };
