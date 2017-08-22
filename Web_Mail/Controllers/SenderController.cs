@@ -120,6 +120,7 @@ namespace Web_Mail.Controllers
         [Route("api/sender/getalllist"), HttpGet]
         public string GetAllList()
         {
+            
            return JsonConvert.SerializeObject(_client.GetAllRecipiantsList());
 
         }
@@ -161,6 +162,14 @@ namespace Web_Mail.Controllers
                 return JsonConvert.SerializeObject(recipiantList);
             }
             else { return ""; }
+
+        }
+
+        [Route("api/sender/getalllistjson"), HttpGet]
+        public RecipiantList[] GetAllListJSON()
+        {
+
+            return _client.GetAllRecipiantsList();
 
         }
 

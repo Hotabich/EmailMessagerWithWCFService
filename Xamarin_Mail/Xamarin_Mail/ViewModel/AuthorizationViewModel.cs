@@ -7,17 +7,32 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin_Mail.View;
+using Xamarin_Mail.Model.Util;
 
 namespace Xamarin_Mail.ViewModel
 {
     public class AuthorizationViewModel : INotifyPropertyChanged
     {
         #region Fields
+        private bool _canDo = true;
         private string _login;
         private string _password;        
         #endregion
 
         #region Propertys
+
+        public bool CanDo
+        {
+            get { return !_canDo; }
+            private set
+            {
+                if (_canDo!= value)
+                {
+                    _canDo = value;
+                    OnPropertyChanged("CanDo");
+                }
+            }
+        }
         public string Login
         {
             get { return _login; }
@@ -27,6 +42,7 @@ namespace Xamarin_Mail.ViewModel
                 {
                     _login = value;
                     OnPropertyChanged("Login");
+                    CanDo = true;
                 }
             }
         }
@@ -40,6 +56,7 @@ namespace Xamarin_Mail.ViewModel
                 {
                     _password = value;
                     OnPropertyChanged("Password");
+                    CanDo = true;
                 }
             }
         }
@@ -50,14 +67,14 @@ namespace Xamarin_Mail.ViewModel
 
 
         //command
-        public ICommand GoToChoiseRecipiantCommand { protected set; get; }
+        public ICommand GoToChoiseRecipiantCommand { protected set; get; }        
         #endregion
 
         #region Сonstructor
         public AuthorizationViewModel()
         {
             this.Title = "Authorization";
-            this.GoToChoiseRecipiantCommand = new Command(GoToChoiseRecipiant);
+            this.GoToChoiseRecipiantCommand = new Command(GoToChoiseRecipiant);            
         }
 
        
@@ -70,9 +87,17 @@ namespace Xamarin_Mail.ViewModel
 
         #region Methods
 
+       
         private async void GoToChoiseRecipiant()
         {
-           await Navigation.PushAsync(new ChoiseRecipiantView(), true);
+            if (Validator.AuthorizationIsValid(Login, Password))
+            {
+                await Navigation.PushAsync(new ChoiseRecipiantView(), true);
+                CanDo = true;
+            }
+            Login = null;
+            Password = null;
+            CanDo = false;
         }
 
         protected void OnPropertyChanged(string propName)

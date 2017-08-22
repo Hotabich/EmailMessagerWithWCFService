@@ -8,17 +8,23 @@
             <Style x:Key="recipiantLabel" TargetType="Label">
                 <Setter Property="Text" Value="Choise list or go next"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextColor" Value="Black"/>                
+            </Style>
+            <Style x:Key="loadLabel" TargetType="Label">
+                <Setter Property="Text" Value="Loading..."/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>                
             </Style>
             <Style x:Key="listItemLabel"  TargetType="Label">
                 <Setter Property="Margin" Value="15,10,10,10"/>
-            </Style>
+            </Style>            
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <Label Style="{StaticResource recipiantLabel}" FontSize="Medium" ></Label>
-            <ListView HasUnevenRows="True" ItemsSource="{Binding RecipiantLists, Mode=TwoWay}" SelectedItem="{Binding CurrentList}" >
+            <Label Style="{StaticResource recipiantLabel}" IsVisible="{Binding IsReady}"  FontSize="Medium" ></Label>
+            <Label Style="{StaticResource loadLabel}" IsVisible="{Binding IsBusy}" FontSize="Medium" ></Label>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding RecipiantLists, Mode=TwoWay}" IsVisible="{Binding IsReady}"  SelectedItem="{Binding CurrentList}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,10 +37,16 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button  Text="Edit" BorderColor="Black"></Button>
-                <Button  Text="Choise"></Button>
-                <Button  Text="Next"></Button>
+            <StackLayout IsVisible="{Binding IsBusy}"
+                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">                
+                <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Accent" >
+                </ActivityIndicator>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button  Text="Edit" Command="{Binding GoToEditListCommand}"></Button>
+                <Button  Text="Delete" Command=""></Button>
+                <Button  Text="Select" Command="{Binding GoToSelectedListCommand}"></Button>
+                <Button  Text="Next" Command="{Binding GoToAddRecipiantCommand}"></Button>
             </StackLayout>
         </StackLayout>        
     </ContentPage.Content>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://Microsoft.ServiceModel.Samples" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Microsoft.ServiceModel.Samples" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://Microsoft.ServiceModel.Samples/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://Microsoft.ServiceModel.Samples" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MainService.Model" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/MainService.Model.DbModels" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMainService_Send_InputMessage">
+    <wsdl:part name="parameters" element="tns:Send" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_Send_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_GetAllRecipiantsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRecipiantsList" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_GetAllRecipiantsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRecipiantsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_GetRecipientsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipientsList" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_GetRecipientsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipientsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_AddRecipiantList_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipiantList" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_AddRecipiantList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipiantListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_AddRecipiant_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipiant" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_AddRecipiant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipiantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_UpdateRecipiant_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecipiant" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_UpdateRecipiant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecipiantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_DeleteRecipiantsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipiantsList" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_DeleteRecipiantsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipiantsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_DeleteRecipiant_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipiant" />
+  </wsdl:message>
+  <wsdl:message name="IMainService_DeleteRecipiant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipiantResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMainService">
+    <wsdl:operation name="Send">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/Send" message="tns:IMainService_Send_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/SendResponse" message="tns:IMainService_Send_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRecipiantsList">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsList" message="tns:IMainService_GetAllRecipiantsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/GetAllRecipiantsListResponse" message="tns:IMainService_GetAllRecipiantsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientsList">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsList" message="tns:IMainService_GetRecipientsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/GetRecipientsListResponse" message="tns:IMainService_GetRecipientsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipiantList">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantList" message="tns:IMainService_AddRecipiantList_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantListResponse" message="tns:IMainService_AddRecipiantList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipiant">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiant" message="tns:IMainService_AddRecipiant_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/AddRecipiantResponse" message="tns:IMainService_AddRecipiant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipiant">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiant" message="tns:IMainService_UpdateRecipiant_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/UpdateRecipiantResponse" message="tns:IMainService_UpdateRecipiant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipiantsList">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsList" message="tns:IMainService_DeleteRecipiantsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantsListResponse" message="tns:IMainService_DeleteRecipiantsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipiant">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiant" message="tns:IMainService_DeleteRecipiant_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IMainService/DeleteRecipiantResponse" message="tns:IMainService_DeleteRecipiant_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

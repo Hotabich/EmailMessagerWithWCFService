@@ -13,10 +13,19 @@ namespace Xamarin_Mail.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChoiseRecipiantView : ContentPage
     {
+        ChoiseRecipiantViewModel viewModel;
         public ChoiseRecipiantView()
         {
             InitializeComponent();
-            this.BindingContext = new ChoiseRecipiantViewModel();
+            viewModel = new ChoiseRecipiantViewModel() { Navigation = this.Navigation };
+            this.BindingContext = viewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            await viewModel.GetAllList();
+            base.OnAppearing();
+        }
+
     }
 }

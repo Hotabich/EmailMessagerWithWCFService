@@ -18,6 +18,10 @@ namespace Xamarin_Mail.View
             InitializeComponent();
                 this.BindingContext = new AuthorizationViewModel() { Navigation=this.Navigation};
         }
-        
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

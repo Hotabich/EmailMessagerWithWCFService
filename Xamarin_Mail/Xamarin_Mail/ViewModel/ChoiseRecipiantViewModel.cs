@@ -8,19 +8,51 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin_Mail.Model;
+using Xamarin_Mail.Model.Service;
+using Xamarin_Mail.View;
 
 namespace Xamarin_Mail.ViewModel
 {
    public class ChoiseRecipiantViewModel: INotifyPropertyChanged
     {
-        #region Fields
+        #region Fields        
+        MailService _service;
+        private bool _isBusy;
+        private bool _isReady;
         private ObservableCollection<RecipiantList> _recipiantLists;
         private RecipiantList _currentList;
         private ObservableCollection<Recipiant> _curentListItems;
         #endregion
 
         #region Propertys
-       public string Title { get; set; }
+        
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            private set
+            {
+                if (_isBusy!=value)
+                {
+                    _isBusy = value;
+                    OnPropertyChanged("IsBusy");
+                }
+            }
+        }
+
+        public bool IsReady
+        {
+            get { return _isReady; } 
+            private set
+            {
+                if (_isReady!=value)
+                {
+                    _isReady = value;
+                    OnPropertyChanged("IsReady");
+                }
+            }
+            
+        }
+        public string Title { get; set; }
 
         public RecipiantList CurrentList
         {
@@ -60,32 +92,29 @@ namespace Xamarin_Mail.ViewModel
                 }
             }
         }
+
+        public ICommand GoToSelectedListCommand { protected set; get; }
+
+        public ICommand GoToEditListCommand { protected set; get; }
+        public ICommand GoToAddRecipiantCommand { protected set; get; }
+        public INavigation Navigation { get; set; }
         #endregion
 
         #region Сonstructor      
         public ChoiseRecipiantViewModel()
         {
+            _service = new MailService();
+            
             this.Title = "Choise Recipiant";
             _recipiantLists = new ObservableCollection<RecipiantList>();
             _curentListItems = new ObservableCollection<Recipiant>();
-
+            
+            this.GoToSelectedListCommand = new Command(GoToSelectedList);
+            this.GoToEditListCommand = new Command(GoToEditList);
+            this.GoToAddRecipiantCommand = new Command(GoToAddRecipiant);
+            
             //for Debug
-            _recipiantLists.Add(new RecipiantList(0, "zero"));
-            _recipiantLists.Add(new RecipiantList(1, "one"));
-            _recipiantLists.Add(new RecipiantList(2, "two"));
-            _recipiantLists.Add(new RecipiantList(3, "three"));
-            _recipiantLists.Add(new RecipiantList(0, "zero"));
-            _recipiantLists.Add(new RecipiantList(1, "one"));
-            _recipiantLists.Add(new RecipiantList(2, "two"));
-            _recipiantLists.Add(new RecipiantList(3, "three"));
-            _recipiantLists.Add(new RecipiantList(0, "zero"));
-            _recipiantLists.Add(new RecipiantList(1, "one"));
-            _recipiantLists.Add(new RecipiantList(2, "two"));
-            _recipiantLists.Add(new RecipiantList(3, "three"));
-            _recipiantLists.Add(new RecipiantList(0, "zero"));
-            _recipiantLists.Add(new RecipiantList(1, "one"));
-            _recipiantLists.Add(new RecipiantList(2, "two"));
-            _recipiantLists.Add(new RecipiantList(3, "three"));
+            
         }
         #endregion
 
@@ -95,7 +124,33 @@ namespace Xamarin_Mail.ViewModel
         #endregion
 
         #region Methods
+
+        public  async Task GetAllList()
+        {
+            IsBusy = true;
+            RecipiantLists =new ObservableCollection<RecipiantList>( await  _service.GetAllList());
+
+            IsBusy = false;
+            IsReady = true;
+        }
        
+        private async void GoToSelectedList()
+        {
+            await Navigation.PushAsync(new SelectedListView());
+        }
+
+        private async void GoToEditList()
+        {
+            if (_currentList != null)
+            {
+                await Navigation.PushAsync(new EditListView(_currentList));
+            }
+        }
+
+        private async void GoToAddRecipiant()
+        {
+            await Navigation.PushAsync(new AddRecipiantView());
+        }
 
         protected void OnPropertyChanged(string propName)
         {
