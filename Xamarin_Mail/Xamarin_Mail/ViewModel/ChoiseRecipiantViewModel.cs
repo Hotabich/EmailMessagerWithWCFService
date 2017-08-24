@@ -94,17 +94,17 @@ namespace Xamarin_Mail.ViewModel
         }
 
         public ICommand GoToSelectedListCommand { protected set; get; }
-
+        public ICommand GoTODeleteListCommand { protected set; get; }
         public ICommand GoToEditListCommand { protected set; get; }
         public ICommand GoToAddRecipiantCommand { protected set; get; }
+
         public INavigation Navigation { get; set; }
         #endregion
 
         #region Сonstructor      
         public ChoiseRecipiantViewModel()
         {
-            _service = new MailService();
-            
+            _service = new MailService();                       
             this.Title = "Choise Recipiant";
             _recipiantLists = new ObservableCollection<RecipiantList>();
             _curentListItems = new ObservableCollection<Recipiant>();
@@ -112,6 +112,7 @@ namespace Xamarin_Mail.ViewModel
             this.GoToSelectedListCommand = new Command(GoToSelectedList);
             this.GoToEditListCommand = new Command(GoToEditList);
             this.GoToAddRecipiantCommand = new Command(GoToAddRecipiant);
+            this.GoTODeleteListCommand = new Command (GoToDeleteList);
             
             //for Debug
             
@@ -127,13 +128,36 @@ namespace Xamarin_Mail.ViewModel
 
         public  async Task GetAllList()
         {
-            IsBusy = true;
-            RecipiantLists =new ObservableCollection<RecipiantList>( await  _service.GetAllList());
+            try
+            {
+                IsBusy = true;
+                RecipiantLists = new ObservableCollection<RecipiantList>(await _service.GetAllList());
 
-            IsBusy = false;
-            IsReady = true;
+                IsBusy = false;
+                IsReady = true;
+            }
+            catch (Exception ex)
+            {
+
+                var error = ex.Message;
+            }
+            
         }
-       
+
+        private void GoToDeleteList()
+        {
+            if (_currentList != null)
+            {
+                IsBusy = true;
+                IsReady = !IsBusy;
+                _service.DeleteList(CurrentList.Id);
+                _recipiantLists.Remove(_currentList);
+                IsBusy = IsReady;
+                IsReady = !IsBusy;
+            }
+        }
+
+
         private async void GoToSelectedList()
         {
             await Navigation.PushAsync(new SelectedListView());

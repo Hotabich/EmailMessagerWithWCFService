@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
             <Label HorizontalOptions="Center">Login</Label>
-            <Entry Text="{Binding Login, Mode=TwoWay}"></Entry>
+            <Entry Text="{Binding Login, Mode=TwoWay}" Keyboard="Email"></Entry>
             <Label HorizontalOptions="Center">Password</Label>
             <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}"></Entry>
             <Label Text=" Login or Password con correct" TextColor="Red" FontSize="Large" IsVisible="{Binding CanDo}"></Label>

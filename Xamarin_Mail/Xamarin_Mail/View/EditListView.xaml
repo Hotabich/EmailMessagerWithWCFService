@@ -3,15 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xamarin_Mail.View.EditListView"
              Title="{Binding Title}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding ListName}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center"></Label>
-            <StackLayout Orientation="Horizontal">
-                <Entry HorizontalOptions="Start" WidthRequest="250"></Entry>
-                <Button HorizontalOptions="End" WidthRequest="70" HeightRequest="30" Text="Add"></Button>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="listItemLabel"  TargetType="Label">
+                <Setter Property="Margin" Value="15,10,10,10"/>
+            </Style>
+            <Style x:Key="loadLabel" TargetType="Label">
+                <Setter Property="Text" Value="Loading..."/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>        
+        <StackLayout >
+            <Label Style="{StaticResource loadLabel}" IsVisible="{Binding IsBusy}" FontSize="Medium" ></Label>
+            <Label Text="{Binding ListName}" IsVisible="{Binding IsReady}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsReady}">
+                <Entry HorizontalOptions="Start"  WidthRequest="250"></Entry>
+                <Button HorizontalOptions="End"  WidthRequest="70" HeightRequest="30" Text="Add" Command="{Binding GoToAddRecipiantCommand}"></Button>
             </StackLayout>
-            <ListView ItemsSource="{Binding RecipiantsList}"></ListView>
-            <Button HorizontalOptions="Center" Text="Ok"></Button>
-        </StackLayout>
+            <StackLayout IsVisible="{Binding IsReady}">
+                <ListView HasUnevenRows="True" ItemsSource="{Binding RecipiantsList, Mode=TwoWay}" SelectedItem="{Binding CurrentRecipiant}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Style="{StaticResource listItemLabel}" Text="{Binding Mail}"></Label>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>               
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsBusy}"
+                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Accent" >
+                </ActivityIndicator>
+            </StackLayout>
+            <Button HorizontalOptions="Center" Text="DELETE"></Button>
+            <Button HorizontalOptions="Center" Text="BACK" Command="{Binding GoToBackCommand}"></Button>
+        </StackLayout>       
     </ContentPage.Content>
 </ContentPage>

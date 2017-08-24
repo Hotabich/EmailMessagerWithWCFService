@@ -14,10 +14,18 @@ namespace Xamarin_Mail.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditListView : ContentPage
 	{
+        EditListViewModel viewModel;
 		public EditListView ( RecipiantList list)
 		{
-			InitializeComponent ();
-            this.BindingContext = new EditListViewModel(list) {Navigation=this.Navigation };
+            viewModel= new EditListViewModel(list) { Navigation = this.Navigation };
+            InitializeComponent ();
+            this.BindingContext = viewModel;
 		}
-	}
+
+        protected async override void OnAppearing()
+        {
+            await viewModel.GetList();
+            base.OnAppearing();
+        }
+    }
 }

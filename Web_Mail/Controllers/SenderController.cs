@@ -165,11 +165,24 @@ namespace Web_Mail.Controllers
 
         }
 
-        [Route("api/sender/getalllistjson"), HttpGet]
-        public RecipiantList[] GetAllListJSON()
+        [Route("api/sender/getalllistForXamarin"), HttpGet]
+        public RecipiantList[] GetAllListForXamarin()
         {
 
             return _client.GetAllRecipiantsList();
+
+        }
+
+        [Route("api/sender/getRecipiantListForXamarin"), HttpPost]
+        public Recipiant[] GetRecipiantListForXamarin([FromBody]dynamic recipiantlistId)
+        {
+            if ((Convert.ToInt32(recipiantlistId)) != null)
+            {
+                Sender.Recipient.Clear();
+                Recipiant[] _recipiantList = _client.GetRecipientsList(Convert.ToInt32(recipiantlistId));
+                return _recipiantList;
+            }
+            return null;
 
         }
 

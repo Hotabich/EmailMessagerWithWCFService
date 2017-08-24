@@ -95,9 +95,12 @@ namespace Xamarin_Mail.ViewModel
                 await Navigation.PushAsync(new ChoiseRecipiantView(), true);
                 CanDo = true;
             }
-            Login = null;
-            Password = null;
-            CanDo = false;
+            else
+            {
+                Login = null;
+                Password = null;
+                CanDo = false;
+            }
         }
 
         protected void OnPropertyChanged(string propName)
