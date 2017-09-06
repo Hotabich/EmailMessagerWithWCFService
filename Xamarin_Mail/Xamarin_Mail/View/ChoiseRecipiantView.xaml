@@ -24,6 +24,11 @@
         <StackLayout Orientation="Vertical">
             <Label Style="{StaticResource recipiantLabel}" IsVisible="{Binding IsReady}"  FontSize="Medium" ></Label>
             <Label Style="{StaticResource loadLabel}" IsVisible="{Binding IsBusy}" FontSize="Medium" ></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" IsVisible="{Binding IsReady}">
+                <Entry Text="{Binding ListName, Mode=TwoWay}" WidthRequest="250" ></Entry>
+                <Button Command="{Binding GoToAddListCommand}" Text="ADD"></Button>
+            </StackLayout>
+            <Label IsVisible="{Binding CanAdd}" Text="Enter name of list"></Label>
             <ListView HasUnevenRows="True" ItemsSource="{Binding RecipiantLists, Mode=TwoWay}" IsVisible="{Binding IsReady}"  SelectedItem="{Binding CurrentList}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -15,7 +15,7 @@
             <Entry Text="{Binding Login, Mode=TwoWay}" Keyboard="Email"></Entry>
             <Label HorizontalOptions="Center">Password</Label>
             <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}"></Entry>
-            <Label Text=" Login or Password con correct" TextColor="Red" FontSize="Large" IsVisible="{Binding CanDo}"></Label>
+            <Label Text=" Login or Password not correct" TextColor="Red" FontSize="Large" IsVisible="{Binding CanDo}"></Label>
             <Button Style="{StaticResource OkButton}"  Command="{Binding GoToChoiseRecipiantCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>

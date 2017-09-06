@@ -186,5 +186,40 @@ namespace Web_Mail.Controllers
 
         }
 
+        [Route("api/sender/deleteRecipiantForXamarin"), HttpPost]
+        public void DeleteRecipiantForXamarin([FromBody]dynamic selectRecipiant)
+        {
+            if (!String.IsNullOrEmpty(selectRecipiant.ToString()))
+            {
+                _client.DeleteRecipiant(Convert.ToInt32(selectRecipiant.Id));
+            }            
+
+        }
+
+        [Route("api/sender/addRecipiantForXamarin"), HttpPost]
+        public Recipiant[] AddRecipiantForXamarin([FromBody]dynamic newRecipiant)
+        {
+            if (!String.IsNullOrEmpty(newRecipiant.Mail.ToString()))
+            {
+                _client.AddRecipiant(Convert.ToInt32(newRecipiant.IdList), newRecipiant.Mail.ToString());
+                return _client.GetRecipientsList(Convert.ToInt32(newRecipiant.IdList));
+            }
+            return null;
+        }
+
+        [Route("api/sender/addListForXamarin"), HttpPost]
+        public RecipiantList[] AddListForXamarin([FromBody]dynamic listName)
+        {
+
+            if (!String.IsNullOrEmpty(listName.ToString()))
+            {
+                _client.AddRecipiantList(listName.ToString());
+                return _client.GetAllRecipiantsList();
+               
+            }
+            else { return null; }
+
+        }
+
     }
 }

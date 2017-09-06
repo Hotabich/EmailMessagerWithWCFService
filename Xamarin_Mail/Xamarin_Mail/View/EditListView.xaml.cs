@@ -15,9 +15,9 @@ namespace Xamarin_Mail.View
 	public partial class EditListView : ContentPage
 	{
         EditListViewModel viewModel;
-		public EditListView ( RecipiantList list)
+		public EditListView ( RecipiantList list, bool isEdit)
 		{
-            viewModel= new EditListViewModel(list) { Navigation = this.Navigation };
+            viewModel= new EditListViewModel(list, isEdit) { Navigation = this.Navigation };
             InitializeComponent ();
             this.BindingContext = viewModel;
 		}

@@ -58,5 +58,47 @@ namespace Xamarin_Mail.Model.Service
                     JsonConvert.SerializeObject(id),
                     Encoding.UTF8, "application/json"));              
         }
+
+        public void DeleteRecipiant(Recipiant deleteRecipiant)
+        {
+            HttpClient _client = GetClient();
+            string _url = Url + "deleteRecipiantForXamarin";
+            var response = _client.PostAsync(_url,
+             new StringContent(
+                   JsonConvert.SerializeObject(deleteRecipiant),
+                   Encoding.UTF8, "application/json"));            
+        }
+
+        public async Task<Recipiant[]> AddRecipiant(Recipiant deleteRecipiant)
+        {
+            HttpClient _client = GetClient();
+            string _url = Url + "addRecipiantForXamarin";
+            var response = await _client.PostAsync(_url,
+             new StringContent(
+                   JsonConvert.SerializeObject(deleteRecipiant),
+                   Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonConvert.DeserializeObject<Recipiant[]>(
+                await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<RecipiantList[]> AddList(string nameList)
+        {
+            HttpClient _client = GetClient();
+            string _url = Url + "addListForXamarin";
+            var response =  await _client.PostAsync(_url,
+             new StringContent(
+                   JsonConvert.SerializeObject(nameList),
+                   Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonConvert.DeserializeObject<RecipiantList[]>(
+                await response.Content.ReadAsStringAsync());
+        }
     }
 }

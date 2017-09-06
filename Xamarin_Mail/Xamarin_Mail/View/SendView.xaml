@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin_Mail.View.SendView"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="listItemLabel"  TargetType="Label">
+                <Setter Property="Margin" Value="15,10,10,10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Subject" HorizontalOptions="Center"></Label>
+            <Entry Keyboard="Text" Text="{Binding Subject}"></Entry>
+            <Label Text="Message" HorizontalOptions="Center"></Label>
+            <Editor Keyboard="Text" Text="{Binding Message}" HeightRequest="150" BackgroundColor="LightBlue"></Editor>
+            <Button Text="{Binding LabelText}"  Command="{Binding GoToShoworHideCommand}"></Button>
+            <ListView HasUnevenRows="True" IsVisible="{Binding IsHide}" ItemsSource="{Binding RecipiantsList, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Style="{StaticResource listItemLabel}" Text="{Binding Mail}"></Label>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Send" Command="{Binding GoToSendCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

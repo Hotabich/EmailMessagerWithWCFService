@@ -17,11 +17,13 @@ namespace Xamarin_Mail.ViewModel
     {
         #region Fields        
         MailService _service;
-        private bool _isBusy;
-        private bool _isReady;
-        private ObservableCollection<RecipiantList> _recipiantLists;
-        private RecipiantList _currentList;
-        private ObservableCollection<Recipiant> _curentListItems;
+        bool _isBusy;
+        bool _isReady;
+        bool _canAdd;
+        string _listName;
+        ObservableCollection<RecipiantList> _recipiantLists;
+        RecipiantList _currentList;
+        ObservableCollection<Recipiant> _curentListItems;
         #endregion
 
         #region Propertys
@@ -35,6 +37,32 @@ namespace Xamarin_Mail.ViewModel
                 {
                     _isBusy = value;
                     OnPropertyChanged("IsBusy");
+                }
+            }
+        }
+
+        public bool CanAdd
+        {
+            get { return _canAdd; }
+            set
+            {
+                if (_canAdd!=value)
+                {
+                    _canAdd = value;
+                    OnPropertyChanged("CanAdd");
+                }
+            }
+        }
+        
+        public string ListName
+        {
+            get { return _listName; }
+            set
+            {
+                if (_listName != value)
+                {
+                    _listName = value;
+                    OnPropertyChanged("ListName");
                 }
             }
         }
@@ -97,6 +125,7 @@ namespace Xamarin_Mail.ViewModel
         public ICommand GoTODeleteListCommand { protected set; get; }
         public ICommand GoToEditListCommand { protected set; get; }
         public ICommand GoToAddRecipiantCommand { protected set; get; }
+        public ICommand GoToAddListCommand { protected set; get; }
 
         public INavigation Navigation { get; set; }
         #endregion
@@ -113,6 +142,7 @@ namespace Xamarin_Mail.ViewModel
             this.GoToEditListCommand = new Command(GoToEditList);
             this.GoToAddRecipiantCommand = new Command(GoToAddRecipiant);
             this.GoTODeleteListCommand = new Command (GoToDeleteList);
+            this.GoToAddListCommand = new Command(GoTOAddList);
             
             //for Debug
             
@@ -157,23 +187,37 @@ namespace Xamarin_Mail.ViewModel
             }
         }
 
+        private async void GoTOAddList()
+        {
+            if (!String.IsNullOrEmpty(ListName))
+            {
+                CanAdd = false;
+                RecipiantLists= new ObservableCollection<RecipiantList>(await _service.AddList(ListName));
+                ListName = null;
+               
+            }
+            else
+            {
+                CanAdd = true;
+            }
+        }
 
         private async void GoToSelectedList()
         {
-            await Navigation.PushAsync(new SelectedListView());
+            await Navigation.PushAsync(new EditListView(_currentList, false));
         }
 
         private async void GoToEditList()
         {
             if (_currentList != null)
             {
-                await Navigation.PushAsync(new EditListView(_currentList));
+                await Navigation.PushAsync(new EditListView(_currentList, true));
             }
         }
 
         private async void GoToAddRecipiant()
         {
-            await Navigation.PushAsync(new AddRecipiantView());
+            await Navigation.PushAsync(new EditListView(new RecipiantList(1000000, "Add Recipiants") , false));
         }
 
         protected void OnPropertyChanged(string propName)

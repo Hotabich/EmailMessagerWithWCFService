@@ -21,10 +21,11 @@
             <Label Style="{StaticResource loadLabel}" IsVisible="{Binding IsBusy}" FontSize="Medium" ></Label>
             <Label Text="{Binding ListName}" IsVisible="{Binding IsReady}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center"></Label>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsReady}">
-                <Entry HorizontalOptions="Start"  WidthRequest="250"></Entry>
-                <Button HorizontalOptions="End"  WidthRequest="70" HeightRequest="30" Text="Add" Command="{Binding GoToAddRecipiantCommand}"></Button>
+                <Entry HorizontalOptions="Start" Keyboard="Email" Text="{Binding RecipiantName}" WidthRequest="250"></Entry>
+                <Button HorizontalOptions="End"  WidthRequest="70" HeightRequest="30" Text="Add" Command="{Binding GoToAddRecipiantCommand}"></Button>                
             </StackLayout>
             <StackLayout IsVisible="{Binding IsReady}">
+                <Label Text=" Mail is not correct" TextColor="Red" FontSize="Large" IsVisible="{Binding CanDo}"></Label>
                 <ListView HasUnevenRows="True" ItemsSource="{Binding RecipiantsList, Mode=TwoWay}" SelectedItem="{Binding CurrentRecipiant}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -44,8 +45,10 @@
                 <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Accent" >
                 </ActivityIndicator>
             </StackLayout>
-            <Button HorizontalOptions="Center" Text="DELETE"></Button>
-            <Button HorizontalOptions="Center" Text="BACK" Command="{Binding GoToBackCommand}"></Button>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+                <Button  Command="{Binding GoToDeleteRecipiantCommand}" Text="DELETE"></Button>
+                <Button  Text="{Binding LabelText}" Command="{Binding GoToUniversalCommand}"></Button>
+            </StackLayout>
         </StackLayout>       
     </ContentPage.Content>
 </ContentPage>

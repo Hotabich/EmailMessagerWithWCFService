@@ -90,7 +90,7 @@ namespace Xamarin_Mail.ViewModel
        
         private async void GoToChoiseRecipiant()
         {
-            if (Validator.AuthorizationIsValid(Login, Password))
+            if (Validator.MailIsValid(Login, Password))
             {
                 await Navigation.PushAsync(new ChoiseRecipiantView(), true);
                 CanDo = true;

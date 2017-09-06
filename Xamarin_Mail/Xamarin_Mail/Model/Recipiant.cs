@@ -24,5 +24,6 @@ namespace Xamarin_Mail.Model
             this.IdList = idList;
             this.Mail = mail;
         }
+       
     }
 }
