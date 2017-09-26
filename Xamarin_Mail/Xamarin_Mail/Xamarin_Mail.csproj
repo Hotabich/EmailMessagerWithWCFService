@@ -41,6 +41,8 @@
     <Compile Include="Model\Recipiant.cs" />
     <Compile Include="Model\RecipiantList.cs" />
     <Compile Include="Model\Service\MailService.cs" />
+    <Compile Include="Model\Util\Converter.cs" />
+    <Compile Include="Model\Util\Message.cs" />
     <Compile Include="Model\Util\Validator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AuthorizationViewModel.cs" />

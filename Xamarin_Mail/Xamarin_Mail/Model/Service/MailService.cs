@@ -100,5 +100,21 @@ namespace Xamarin_Mail.Model.Service
             return JsonConvert.DeserializeObject<RecipiantList[]>(
                 await response.Content.ReadAsStringAsync());
         }
+
+        public async Task<string> Send(Model.Util.Message message)
+        {
+            HttpClient _client = GetClient();
+            string _url = Url + "sendForXamarin";
+            var response = await _client.PostAsync(_url,
+             new StringContent(
+                   JsonConvert.SerializeObject(message),
+                   Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonConvert.DeserializeObject<string>(
+                await response.Content.ReadAsStringAsync());
+        }
     }
 }

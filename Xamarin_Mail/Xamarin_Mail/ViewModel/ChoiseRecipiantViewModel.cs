@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin_Mail.Model;
 using Xamarin_Mail.Model.Service;
+using Xamarin_Mail.Model.Util;
 using Xamarin_Mail.View;
 
 namespace Xamarin_Mail.ViewModel
@@ -81,6 +82,8 @@ namespace Xamarin_Mail.ViewModel
             
         }
         public string Title { get; set; }
+
+        public Message Message { get; set; }
 
         public RecipiantList CurrentList
         {
@@ -204,20 +207,21 @@ namespace Xamarin_Mail.ViewModel
 
         private async void GoToSelectedList()
         {
-            await Navigation.PushAsync(new EditListView(_currentList, false));
+            
+            await Navigation.PushAsync(new EditListView(_currentList, false, Message));
         }
 
         private async void GoToEditList()
         {
             if (_currentList != null)
             {
-                await Navigation.PushAsync(new EditListView(_currentList, true));
+                await Navigation.PushAsync(new EditListView(_currentList, true, Message));
             }
         }
 
         private async void GoToAddRecipiant()
         {
-            await Navigation.PushAsync(new EditListView(new RecipiantList(1000000, "Add Recipiants") , false));
+            await Navigation.PushAsync(new EditListView(new RecipiantList(1000000, "Add Recipiants") , false, Message));
         }
 
         protected void OnPropertyChanged(string propName)

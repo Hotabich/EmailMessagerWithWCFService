@@ -81,7 +81,9 @@ namespace Xamarin_Mail.ViewModel
             }
 
         }
+
         public INavigation Navigation { get; set; }
+
         public RecipiantList List
         {
             get { return _list; }
@@ -120,7 +122,11 @@ namespace Xamarin_Mail.ViewModel
                 }
             }
         }
+
         public string Title { get; set; }
+
+        public Message Message { get; set; }
+
         public string ListName
         {
             get { return List.Name; }
@@ -225,7 +231,8 @@ namespace Xamarin_Mail.ViewModel
 
         private async void GoToNext()
         {
-            await Navigation.PushAsync(new SendView(RecipiantsList));
+            Message.Receivers = Converter.RecipiantToString(RecipiantsList);
+            await Navigation.PushAsync(new SendView(Message));
         }
 
         private async void GoToBack()

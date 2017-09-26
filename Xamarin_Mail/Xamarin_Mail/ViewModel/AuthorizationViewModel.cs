@@ -92,7 +92,10 @@ namespace Xamarin_Mail.ViewModel
         {
             if (Validator.MailIsValid(Login, Password))
             {
-                await Navigation.PushAsync(new ChoiseRecipiantView(), true);
+                Message message = new Message();
+                message.OwnerLogin = Login;
+                message.OwnerPassword = Password;
+                await Navigation.PushAsync(new ChoiseRecipiantView( message), true);
                 CanDo = true;
             }
             else

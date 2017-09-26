@@ -17,8 +17,8 @@
             <Label Text="Message" HorizontalOptions="Center"></Label>
             <Editor Keyboard="Text" Text="{Binding Message}" HeightRequest="150" BackgroundColor="LightBlue"></Editor>
             <Button Text="{Binding LabelText}"  Command="{Binding GoToShoworHideCommand}"></Button>
-            <ListView HasUnevenRows="True" IsVisible="{Binding IsHide}" ItemsSource="{Binding RecipiantsList, Mode=OneWay}">
-                <ListView.ItemTemplate>
+            <ListView HasUnevenRows="True" IsVisible="{Binding IsHide}" ItemsSource="{Binding Message.Receivers, Mode=OneWay}">
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
@@ -28,7 +28,7 @@
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
             </ListView>
             <Button Text="Send" Command="{Binding GoToSendCommand}"></Button>
         </StackLayout>

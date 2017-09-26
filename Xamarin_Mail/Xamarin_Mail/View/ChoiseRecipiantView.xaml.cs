@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin_Mail.Model.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin_Mail.ViewModel;
@@ -14,10 +14,10 @@ namespace Xamarin_Mail.View
     public partial class ChoiseRecipiantView : ContentPage
     {
         ChoiseRecipiantViewModel viewModel;
-        public ChoiseRecipiantView()
+        public ChoiseRecipiantView( Message message)
         {
             InitializeComponent();
-            viewModel = new ChoiseRecipiantViewModel() { Navigation = this.Navigation };
+            viewModel = new ChoiseRecipiantViewModel() { Navigation = this.Navigation, Message = message };
             this.BindingContext = viewModel;
         }
 

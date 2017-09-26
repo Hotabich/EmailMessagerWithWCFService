@@ -221,5 +221,33 @@ namespace Web_Mail.Controllers
 
         }
 
+        [Route("api/sender/sendForXamarin"), HttpPost]
+        public string SendForXamarin([FromBody]dynamic message)
+        {
+
+
+            Message mess = new Message();
+            mess.OwnerLogin = message.OwnerLogin;
+            mess.OwnerPassword = message.OwnerPassword;           
+            mess.Receivers = new string[message.Receivers.Count];
+            int _idRecipient = 0;
+            foreach (var item in message.Receivers)
+            {
+                mess.Receivers[_idRecipient] = item.ToString();
+                _idRecipient++;
+            }
+
+
+            mess.SubjectMessage = message.SubjectMessage;
+            mess.TextMessage = message.TextMessage;
+
+            string[] result = _client.Send(mess);
+            string resultString = null;
+            foreach (var item in result)
+            {
+                resultString += item + "; ";
+            }
+            return resultString;
+        }
     }
 }

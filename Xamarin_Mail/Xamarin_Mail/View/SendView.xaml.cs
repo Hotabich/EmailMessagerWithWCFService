@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-
+using Xamarin_Mail.Model.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin_Mail.ViewModel;
@@ -16,9 +16,9 @@ namespace Xamarin_Mail.View
     public partial class SendView : ContentPage
     {
         SendViewModel viewModel;
-        public SendView(ObservableCollection<Recipiant> recipiants)
+        public SendView(Message message)
         {
-            viewModel = new SendViewModel(recipiants) { Navigation = this.Navigation };
+            viewModel = new SendViewModel() { Navigation = this.Navigation, Message= message };
             InitializeComponent();
             this.BindingContext = viewModel;
         }
