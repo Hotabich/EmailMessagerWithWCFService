@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin_Mail.ViewModel;
@@ -12,7 +7,7 @@ using Xamarin_Mail.Model.Util;
 
 namespace Xamarin_Mail.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditListView : ContentPage
 	{
         EditListViewModel viewModel;

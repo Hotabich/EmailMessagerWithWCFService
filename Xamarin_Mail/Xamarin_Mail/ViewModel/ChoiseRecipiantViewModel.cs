@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
@@ -14,7 +11,7 @@ using Xamarin_Mail.View;
 
 namespace Xamarin_Mail.ViewModel
 {
-   public class ChoiseRecipiantViewModel: INotifyPropertyChanged
+    public class ChoiseRecipiantViewModel: INotifyPropertyChanged
     {
         #region Fields        
         MailService _service;
